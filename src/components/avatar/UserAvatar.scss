@@ -1,16 +1,19 @@
 .user_avatar {
   &__container {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 40px;
     height: 40px;
     border-radius: 100%;
-    background-color: red;
+    background-color: #267abf;
+    cursor: pointer;
   }
 
   &__text {
     color: white;
     font-weight: 600;
+    user-select: none;
   }
 }
