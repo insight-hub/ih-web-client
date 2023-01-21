@@ -6,6 +6,8 @@ import { RouterProvider } from 'react-router-dom';
 import store from './store';
 import router from './router';
 
+import './index.scss';
+
 const container = document.getElementById('root');
 const root = createRoot(container!);
 
