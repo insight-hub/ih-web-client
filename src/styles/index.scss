@@ -1,10 +1,11 @@
+@import 'reset';
+@import 'theme';
+
 * {
-  margin: 0;
-  padding: 0;
   font-family: 'Inter', sans-serif;
 }
 
 a {
-  color: black;
+  color: $text-regular-color;
   text-decoration: none;
 }

@@ -8,7 +8,7 @@ export const DropdownMenu = () => {
   return (
     <div className="menu__container">
       <div className="menu_section">
-        <div className="menu_header">
+        <div className="menu_header text-regular">
           Sigled in as <span className="menu_user_name">saymurrmeow</span>
         </div>
       </div>
