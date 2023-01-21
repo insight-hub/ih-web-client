@@ -1,13 +1,12 @@
 import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import { Header } from './Header';
 
 export const Layout: React.FC = () => {
   return (
     <div className="layout__container">
-      <nav>
-        <Link to="/profile">PROFILE</Link>
-        <Outlet />
-      </nav>
+      <Header />
+      <Outlet />
     </div>
   );
 };

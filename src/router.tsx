@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 
-import { Home, Layout, Profile } from './layouts';
+import { Layout } from './layouts';
 
 export default createBrowserRouter([
   {
@@ -10,11 +10,9 @@ export default createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home />,
       },
       {
         path: '/profile',
-        element: <Profile />,
       },
     ],
   },
