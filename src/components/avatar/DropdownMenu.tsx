@@ -15,16 +15,7 @@ export const DropdownMenu = () => {
       <ul>
         <div className="menu_section">
           <li className="menu_list__item">
-            <Link to="/profile">Profile</Link>
-          </li>
-          <li className="menu_list__item">
-            <Link to="/profile">Profile</Link>
-          </li>
-          <li className="menu_list__item">
-            <Link to="/profile">Profile</Link>
-          </li>
-          <li className="menu_list__item">
-            <Link to="/profile">Profile</Link>
+            <Link to="/profile">Your profile</Link>
           </li>
         </div>
         <div className="menu_section">

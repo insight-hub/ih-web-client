@@ -1,7 +1,14 @@
 $text-regular-color: #242424;
 $text-regular-size: 0.9rem;
 
+$content-lg-width: 70vw;
+
 .text-regular {
   font-size: $text-regular-size;
   color: $text-regular-color;
+}
+
+.content__container {
+  margin: 0 auto;
+  width: $content-lg-width;
 }
