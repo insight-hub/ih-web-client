@@ -21,6 +21,10 @@ export default createBrowserRouter([
         path: '/settings',
         element: React.createElement('h1', {}, 'Settings'),
       },
+      {
+        path: '/help',
+        element: React.createElement('h1', {}, 'Help'),
+      },
     ],
   },
 ]);

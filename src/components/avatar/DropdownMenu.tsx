@@ -9,25 +9,26 @@ export const DropdownMenu = () => {
     <div className="menu__container">
       <div className="menu_section">
         <div className="menu_header text-regular">
-          Sigled in as <span className="menu_user_name">saymurrmeow</span>
+          Signed in as <span className="t-bold">saymurrmeow</span>
         </div>
       </div>
-      <ul>
-        <div className="menu_section">
-          <li className="menu_list__item">
-            <Link to="/profile">Your profile</Link>
-          </li>
-        </div>
-        <div className="menu_section">
-          <li className="menu_list__item">
-            <Link to="/settings">Settings</Link>
-          </li>
-        </div>
-        <div className="menu_section menu_section--non-border">
-          <li className="menu_list__item">
-            <Link to="/signout">Sign out</Link>
-          </li>
-        </div>
+      <ul className="menu_section">
+        <Link to="/profile">
+          <li className="menu_list__item">Your profile</li>
+        </Link>
+      </ul>
+      <ul className="menu_section">
+        <Link to="/settings">
+          <li className="menu_list__item">Settings</li>
+        </Link>
+        <Link to="/help">
+          <li className="menu_list__item">Help</li>
+        </Link>
+      </ul>
+      <ul className="menu_section menu_section--non-border">
+        <Link to="/signout">
+          <li className="menu_list__item">Sign out</li>
+        </Link>
       </ul>
     </div>
   );

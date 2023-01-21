@@ -3,6 +3,8 @@ $text-regular-size: 0.9rem;
 
 $content-lg-width: 70vw;
 
+$border-default-color: #d0d7de;
+
 .text-regular {
   font-size: $text-regular-size;
   color: $text-regular-color;
@@ -11,4 +13,8 @@ $content-lg-width: 70vw;
 .content__container {
   margin: 0 auto;
   width: $content-lg-width;
+}
+
+.t-bold {
+  font-weight: 700;
 }
