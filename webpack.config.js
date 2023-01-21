@@ -79,6 +79,7 @@ module.exports = {
   devServer: {
     port: DEVSERVER_PORT,
     hot: true,
+    historyApiFallback: true,
   },
   experiments: {
     topLevelAwait: true,
