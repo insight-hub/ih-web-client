@@ -1,9 +1,6 @@
-$text-regular-color: #242424;
-$text-regular-size: 0.9rem;
-
-$content-lg-width: 70vw;
-
-$border-default-color: #d0d7de;
+* {
+  font-family: 'Inter', sans-serif;
+}
 
 .text-regular {
   font-size: $text-regular-size;
@@ -17,4 +14,13 @@ $border-default-color: #d0d7de;
 
 .t-bold {
   font-weight: 700;
+}
+
+.page-title {
+  font-size: 1.5rem;
+}
+
+a {
+  color: $text-regular-color;
+  text-decoration: none;
 }

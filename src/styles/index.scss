@@ -1,11 +1,5 @@
 @import 'reset';
+@import 'variables';
+@import 'breackpoints';
+@import 'grid';
 @import 'theme';
-
-* {
-  font-family: 'Inter', sans-serif;
-}
-
-a {
-  color: $text-regular-color;
-  text-decoration: none;
-}
