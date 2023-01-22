@@ -2,7 +2,7 @@ import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 
 import { Layout } from './layouts';
-import { Profile } from './pages/Profile';
+import { Profile, Calendar } from './pages';
 
 export default createBrowserRouter([
   {
@@ -16,6 +16,10 @@ export default createBrowserRouter([
       {
         path: '/profile',
         element: <Profile />,
+      },
+      {
+        path: '/calendar',
+        element: <Calendar />,
       },
       {
         path: '/settings',

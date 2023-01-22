@@ -16,6 +16,9 @@ export const DropdownMenu = () => {
         <Link to="/profile">
           <li className="menu_list__item">Your profile</li>
         </Link>
+        <Link to="/calendar">
+          <li className="menu_list__item">Your calendar</li>
+        </Link>
       </ul>
       <ul className="menu_section">
         <Link to="/settings">
