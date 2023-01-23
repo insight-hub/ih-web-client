@@ -31,7 +31,7 @@ export const Calendar = () => {
             <span className="fw-bold">{months[monthNum]}</span> {year}
           </div>
           <div className="col-7-xs">
-            <ButtonGroup>
+            <ButtonGroup activeIdx={1}>
               <Button title="Day" variant="primary" />
               <Button title="Week" />
               <Button title="Month" />

@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { cloneElement, ReactElement, useState } from 'react';
 
 import './ButtonGroup.scss';
 
@@ -7,9 +7,17 @@ type Props = {
 };
 
 export const ButtonGroup: React.FC<Props> = (props) => {
+  const [activeIdx, setActiveIdx] = useState(-1);
   return (
     <div role="group" className="btn-group">
-      {props.children.map((child) => child)}
+      {props.children.map((child, i) =>
+        cloneElement(child, {
+          ...child.props,
+          key: i,
+          active: i === activeIdx,
+          onClick: () => setActiveIdx(i),
+        }),
+      )}
     </div>
   );
 };

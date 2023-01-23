@@ -7,11 +7,21 @@ type ButtonVariant = 'primary' | 'danger' | 'secondary';
 
 type Props = {
   title: string;
+  active?: boolean;
+  onClick?: () => void;
   variant?: ButtonVariant;
 };
 
 export const Button: React.FC<Props> = (props) => {
-  const buttonClasses = classNames(['btn', `btn--${props.variant ?? 'primary'}`]);
+  const buttonClasses = classNames([
+    'btn',
+    `btn--${props.variant ?? 'primary'}`,
+    `${props.active && 'active'}`,
+  ]);
 
-  return <button className={buttonClasses}>{props.title}</button>;
+  return (
+    <button onClick={props.onClick} className={buttonClasses}>
+      {props.title}
+    </button>
+  );
 };
