@@ -1,11 +1,25 @@
+@import '../../../styles/variables.scss';
+
+$variants: (
+  'primary': $primary-color,
+  'danger': $danger-color,
+);
+
 .btn {
   display: block;
   border: none;
-  background-color: white;
   padding: 5px 20px;
+
+  @each $key, $value in $variants {
+    &--#{$key} {
+      color: white;
+      background-color: $value;
+    }
+  }
 
   &:hover {
     color: white;
-    background-color: #0b5ed7;
+    background-color: $primary-hovered-color;
+    cursor: pointer;
   }
 }

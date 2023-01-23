@@ -1,7 +1,7 @@
-.btn-group {
-  &__container {
-  }
+@import '../../../styles/variables.scss';
+@import '../../../styles/theme.scss';
 
+.btn-group {
   &__item {
     float: left;
     border: 1px solid black;
@@ -19,6 +19,21 @@
 
     &:last-child {
       border-radius: 0 5px 5px 0;
+    }
+
+    &--active {
+      background-color: $primary-color;
+    }
+
+    // TODO refactor
+    &:not(&--active) > button {
+      @extend .text-regular;
+      background-color: white;
+
+      &:hover {
+        color: white;
+        background-color: $primary-hovered-color;
+      }
     }
   }
 }
