@@ -137,6 +137,32 @@ $utilities: (
       'full': 50%,
     ),
   ),
+  // TODO refactor
+  'border-bottom':
+    (
+      'prefix': 'b',
+      'values': (
+        'bt': 1px solid $base-border-color,
+      ),
+    ),
+  'border-top': (
+    'prefix': 'b',
+    'values': (
+      't': 1px solid $base-border-color,
+    ),
+  ),
+  'border-left': (
+    'prefix': 'b',
+    'values': (
+      'l': 1px solid $base-border-color,
+    ),
+  ),
+  'border-right': (
+    'prefix': 'b',
+    'values': (
+      'r': 1px solid $base-border-color,
+    ),
+  ),
   'display': (
     'prefix': 'd',
     'values': (
