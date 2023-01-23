@@ -1,39 +1,24 @@
 import React from 'react';
+import { DailyColumn } from './DailyColumn';
 
 import { HourLine } from './HourLine';
 
+// TODO refactor layouts
 export const Daily: React.FC = () => {
-  const timestamp = new Date();
-
   return (
-    <div className="row">
-      <div className="col-1-md col-2-xs col align-end pr-1 b-r">
-        <HourLine timestamp={timestamp} />
+    <>
+      <div className="col-1-md col-2-xs col justify-space-around align-end pr-1 b-r">
+        <HourLine />
       </div>
-      <div className="col-10-xs col-11-md" style={{ position: 'relative' }}>
-        <div className="red-line" style={{ left: '-5px', position: 'absolute', width: '100%' }}>
-          <div
-            className="red-dot"
-            style={{
-              width: '10px',
-              height: '10px',
-              left: '-5',
-              backgroundColor: 'red',
-              borderRadius: '100%',
-            }}
-          ></div>
-          <div
-            className="red-line"
-            style={{
-              borderBottom: '1px solid red',
-              position: 'absolute',
-              width: '100%',
-              top: '5px',
-              left: '5px',
-            }}
-          />
+      <div className="col-10-xs col-11-md">
+        <div className="red-line__container">
+          <div className="red-line">
+            <div className="red-line__dot" />
+            <div className="red-line__line" />
+          </div>
         </div>
+        <DailyColumn />
       </div>
-    </div>
+    </>
   );
 };
