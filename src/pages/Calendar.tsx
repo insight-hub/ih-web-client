@@ -23,8 +23,6 @@ export const Calendar = () => {
   const monthNum = timestamp.getMonth();
   const year = timestamp.getFullYear();
 
-  const [activeIdx, setActiveIdx] = useState(0);
-
   return (
     <>
       <div className="calentar_header col-lg-12">
@@ -33,7 +31,7 @@ export const Calendar = () => {
             <span className="fw-bold">{months[monthNum]}</span> {year}
           </div>
           <div className="col-7-xs">
-            <ButtonGroup activeIdx={activeIdx} setActiveIdx={setActiveIdx}>
+            <ButtonGroup>
               <Button title="Day" variant="primary" />
               <Button title="Week" />
               <Button title="Month" />

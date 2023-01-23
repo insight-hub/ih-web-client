@@ -2,38 +2,34 @@
 @import '../../../styles/theme.scss';
 
 .btn-group {
-  &__item {
-    float: left;
+  display: inline-flex;
+  position: relative;
+
+  // TODO refactor
+  & > .btn:not(.active) {
+    @extend .text-regular;
+    background-color: white;
+
+    &:hover {
+      color: white;
+      background-color: $primary-hovered-color;
+    }
+  }
+
+  & > .btn {
+    position: relative;
+    flex: 1 1 auto;
     border: 1px solid black;
-    cursor: pointer;
-    box-sizing: border-box;
-    overflow: hidden;
+  }
 
-    &:not(:last-child) {
-      border-right: none;
-    }
+  > .btn:not(:last-child) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: none;
+  }
 
-    &:first-child {
-      border-radius: 5px 0 0 5px;
-    }
-
-    &:last-child {
-      border-radius: 0 5px 5px 0;
-    }
-
-    &--active {
-      background-color: $primary-color;
-    }
-
-    // TODO refactor
-    &:not(&--active) > button {
-      @extend .text-regular;
-      background-color: white;
-
-      &:hover {
-        color: white;
-        background-color: $primary-hovered-color;
-      }
-    }
+  > .btn:not(:first-child) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
   }
 }

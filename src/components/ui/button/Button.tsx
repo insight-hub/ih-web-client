@@ -13,9 +13,5 @@ type Props = {
 export const Button: React.FC<Props> = (props) => {
   const buttonClasses = classNames(['btn', `btn--${props.variant ?? 'primary'}`]);
 
-  return (
-    <>
-      <button className={buttonClasses}>{props.title}</button>
-    </>
-  );
+  return <button className={buttonClasses}>{props.title}</button>;
 };
