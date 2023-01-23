@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { ButtonGroup } from '../components/ui/buttonGroup/ButtonGroup';
 import { Button } from '../components/ui/button/Button';
+import { Calendar as UiCalendar } from 'src/components/ui/calendar';
 
 const months = [
   'January',
@@ -25,18 +26,30 @@ export const Calendar = () => {
 
   return (
     <>
-      <div className="calentar_header col-lg-12">
-        <div className="row align-center font-xl">
-          <div className="col-5-xs col-3-md">
+      <div className="col-lg-12">
+        <div className="calendar__header row align-center pb-1 b-bt">
+          <div className="col-5-xs col-3-md font-xl">
             <span className="fw-bold">{months[monthNum]}</span> {year}
           </div>
           <div className="col-7-xs">
-            <ButtonGroup activeIdx={1}>
-              <Button title="Day" variant="primary" />
+            <ButtonGroup>
+              <Button title="Day" />
               <Button title="Week" />
               <Button title="Month" />
               <Button title="Year" />
             </ButtonGroup>
+          </div>
+        </div>
+        <div className="row pt-2">
+          <div className="calendar__aside col-4-xs col-2-md">
+            <span className="font-md fw-bold">My calendars</span>
+            <div className="row pt-2">
+              <input type="checkbox" className="m-0 mr-1" />
+              <div className="font-sm">Ruslan Savinovskii</div>
+            </div>
+          </div>
+          <div className="calendar__body col-8-xs col-10-md">
+            <UiCalendar />
           </div>
         </div>
       </div>
