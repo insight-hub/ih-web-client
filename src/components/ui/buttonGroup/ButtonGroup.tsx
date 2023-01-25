@@ -15,7 +15,11 @@ export const ButtonGroup: React.FC<Props> = (props) => {
           ...child.props,
           key: i,
           active: i === activeIdx,
-          onClick: () => setActiveIdx(i),
+          onClick: () => {
+            // TODO refactor
+            child.props.onClick();
+            setActiveIdx(i);
+          },
         }),
       )}
     </div>

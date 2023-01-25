@@ -1,11 +1,12 @@
 @import '../../../styles/variables.scss';
 
+//TODO refactor
 .calendar {
   overflow: scroll;
   height: 75vh;
 
   &__internal {
-    height: 1000px;
+    height: 960px;
   }
 }
 
@@ -22,7 +23,9 @@
   }
 }
 
-//TODO refactor
+.week-item {
+}
+
 .red-line {
   left: -5px;
   position: absolute;
