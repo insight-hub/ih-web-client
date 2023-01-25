@@ -12,11 +12,11 @@ type Props = {
   variant?: ButtonVariant;
 };
 
-export const Button: React.FC<Props> = (props) => {
+export const Button: React.FC<Props> = ({ active = true, ...props }) => {
   const buttonClasses = classNames([
     'btn',
     `btn--${props.variant ?? 'primary'}`,
-    `${props.active && 'active'}`,
+    `${active && 'active'}`,
   ]);
 
   return (
