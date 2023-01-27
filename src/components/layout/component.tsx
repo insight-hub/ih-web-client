@@ -1,4 +1,4 @@
-import { DetailedHTMLProps, HTMLAttributes } from 'react';
+import { DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react';
 
 import { styled } from '../utils-styled-components';
 import {
@@ -38,6 +38,8 @@ export interface LayoutProps extends Omit<DivProps, 'color' | 'role' | 'ref'> {
   breakpointMd?: LayoutCssBreakpointProps;
   breakpointLg?: LayoutCssBreakpointProps;
   breakpointXl?: LayoutCssBreakpointProps;
+  children?: ReactNode;
+  className?: string;
 }
 
 export const Layout = styled.div.withConfig({})<LayoutProps>(() => ({}));
