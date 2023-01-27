@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
-import { ButtonGroup } from '../components/ui/buttonGroup/ButtonGroup';
-import { Button } from '../components/ui/button/Button';
-import { Calendar as UiCalendar } from 'src/components/ui/calendar';
-import { calendarMode } from 'src/components/ui/calendar/Calendar';
+import { ButtonGroup } from 'src/components/buttonGroup/ButtonGroup';
+import { Button } from 'src/components/button/Button';
+import { Calendar as UiCalendar } from 'src/components/calendar';
+import { calendarMode } from 'src/components/calendar/Calendar';
 
 const months = [
   'January',

@@ -42,4 +42,7 @@ export interface LayoutProps extends Omit<DivProps, 'color' | 'role' | 'ref'> {
   className?: string;
 }
 
-export const Layout = styled.div.withConfig({})<LayoutProps>(() => ({}));
+export const Layout = styled.div.withConfig({})<LayoutProps>(() => ({
+  test: 'test',
+}));
+Layout.displayName = 'Layout';
