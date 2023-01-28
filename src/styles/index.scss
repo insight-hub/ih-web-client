@@ -4,3 +4,10 @@
 // @import 'breackpoints';
 // @import 'grid';
 // @import 'theme';
+
+#root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}

@@ -2,7 +2,31 @@
 
 exports[`Column should render correct 1`] = `
 <div
-  className="sc-bcXHqe efoxHK"
+  className="sc-bcXHqe ilWaIG"
   cols={1}
+/>
+`;
+
+exports[`Column should render with breakpoints 1`] = `
+<div
+  className="sc-bcXHqe ipUaYV"
+  cols={
+    {
+      "lg": 2,
+      "md": 2,
+      "sm": 5,
+      "xl": 1,
+      "xs": 2,
+    }
+  }
+  offset={
+    {
+      "lg": 2,
+      "md": 2,
+      "sm": 5,
+      "xl": 1,
+      "xs": 2,
+    }
+  }
 />
 `;

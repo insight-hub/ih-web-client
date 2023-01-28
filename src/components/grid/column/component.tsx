@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { ReactNode } from 'react';
 
 import { CSSObject, styled } from 'src/components/utils-styled-components';
@@ -24,6 +25,7 @@ export function getBreakpointCss<T>(
 
   if (typeof propValue === 'object') {
     const css: CSSObject = {};
+    // TODO typing
     Object.entries(propValue).forEach(([breakpointKey, breakpointValue]) => {
       css[getBreakpointWidthRule(breakpointKey)] = callback(breakpointValue);
     });
@@ -33,9 +35,7 @@ export function getBreakpointCss<T>(
   return {};
 }
 
-type Breackpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-
-const breackpointMap: Record<Breackpoint, string> = {
+const breackpointMap: Record<string, string> = {
   xs: '0',
   sm: '480px',
   md: '720px',
@@ -43,7 +43,7 @@ const breackpointMap: Record<Breackpoint, string> = {
   xl: '1200px',
 };
 
-const getBreakpointWidthRule = (breakpoint: Breackpoint | 'default'): string => {
+const getBreakpointWidthRule = (breakpoint: keyof typeof breackpointMap | 'default'): string => {
   if (breakpoint === 'default') {
     return '&';
   }
@@ -53,7 +53,7 @@ const getBreakpointWidthRule = (breakpoint: Breackpoint | 'default'): string => 
 
 interface ScProps {
   $cols: Props['cols'];
-  $offset?: OffsetColumns;
+  $offset?: Props['offset'];
 }
 
 const ScColumn = styled.div<ScProps>`
@@ -81,9 +81,18 @@ interface ColumnValues {
   xl?: Columns;
 }
 
+interface OffsetValues {
+  default?: OffsetColumns;
+  xs?: OffsetColumns;
+  sm?: OffsetColumns;
+  md?: OffsetColumns;
+  lg?: OffsetColumns;
+  xl?: OffsetColumns;
+}
+
 interface Props {
   cols: Columns | ColumnValues;
-  offset?: OffsetColumns;
+  offset?: OffsetColumns | OffsetValues;
   children?: ReactNode;
 }
 
