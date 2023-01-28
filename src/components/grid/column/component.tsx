@@ -22,17 +22,43 @@ export function getBreakpointCss<T>(
     return callback(propValue);
   }
 
+  if (typeof propValue === 'object') {
+    const css: CSSObject = {};
+    Object.entries(propValue).forEach(([breakpointKey, breakpointValue]) => {
+      css[getBreakpointWidthRule(breakpointKey)] = callback(breakpointValue);
+    });
+    return css;
+  }
+
   return {};
 }
 
+type Breackpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+
+const breackpointMap: Record<Breackpoint, string> = {
+  xs: '0',
+  sm: '480px',
+  md: '720px',
+  lg: '960px',
+  xl: '1200px',
+};
+
+const getBreakpointWidthRule = (breakpoint: Breackpoint | 'default'): string => {
+  if (breakpoint === 'default') {
+    return '&';
+  }
+
+  return `@media screen and (min-width: ${breackpointMap[breakpoint]})`;
+};
+
 interface ScProps {
-  $cols: Columns;
+  $cols: Props['cols'];
   $offset?: OffsetColumns;
 }
 
 const ScColumn = styled.div<ScProps>`
-  box-sizing: border-box;
-  flex: 0 0 auto;
+box - sizing: border - box;
+flex: 0 0 auto;
 
   ${({ $cols }) =>
     getBreakpointCss($cols, (value) => ({
@@ -46,8 +72,17 @@ const ScColumn = styled.div<ScProps>`
     }))}
 `;
 
+interface ColumnValues {
+  default?: Columns;
+  xs?: Columns;
+  sm?: Columns;
+  md?: Columns;
+  lg?: Columns;
+  xl?: Columns;
+}
+
 interface Props {
-  cols: Columns;
+  cols: Columns | ColumnValues;
   offset?: OffsetColumns;
   children?: ReactNode;
 }
