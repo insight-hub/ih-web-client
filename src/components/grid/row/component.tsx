@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 
-import { AlignItems, JustifyContent } from 'src/components/layout';
+import { AlignItems, JustifyContent, Position } from 'src/components/layout';
 import { styled } from 'src/components/utils-styled-components';
 import { Layout } from 'src/components/layout';
 
@@ -19,5 +19,5 @@ const ScRow = styled(Layout)`
 `;
 
 export const Row: React.FC<Props> = (props) => {
-  return <ScRow {...props} />;
+  return <ScRow position={Position.Relative} {...props} />;
 };

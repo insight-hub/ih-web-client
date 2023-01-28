@@ -5,3 +5,12 @@ exports[`Layout should render correct 1`] = `
   className="sc-bcXHqe"
 />
 `;
+
+exports[`Layout should render correct with props 1`] = `
+<div
+  className="sc-bcXHqe lbcHjn"
+  cursor="pointer"
+  display="flex"
+  overflow="scroll"
+/>
+`;

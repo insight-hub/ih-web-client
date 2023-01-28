@@ -99,5 +99,3 @@ export enum FontWeight {
   SemiBold = 'semibold',
   Bold = 'bold',
 }
-
-export type BorderRadiusProps = BorderRadius;

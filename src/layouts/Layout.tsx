@@ -1,6 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import { Row } from 'src/components/grid/row/component';
+import { Row } from 'src/components/grid/row';
+import { Column } from 'src/components/grid/column';
 
 import { Header } from './Header';
 
@@ -9,12 +10,12 @@ export const Layout: React.FC = () => {
     <div className="layout__container">
       <Header />
       <div className="container">
-        <div className="row pt-5">
-          <Row></Row>
-          <div className="col-12-xs">
-            <Outlet />
-          </div>
-        </div>
+        <Row>
+          <Column cols={2}>test</Column>
+          <Column cols={2}>test</Column>
+          <Column cols={2}>test</Column>
+        </Row>
+        <Outlet />
       </div>
     </div>
   );

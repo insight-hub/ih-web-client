@@ -1,6 +1,8 @@
+import { StandardPropertiesHyphen } from 'csstype';
 import { DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react';
+import { ThemeContextValue, ThemedStyledProps } from 'src/components/utils-styled-components';
 
-import { styled } from '../utils-styled-components';
+import { styled, StyledComponent } from '../utils-styled-components';
 import {
   Position,
   Display,
@@ -18,9 +20,12 @@ import {
 
 type DivProps = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
 
-interface LayoutCssBreakpointProps { }
+export interface LayoutNonCss {
+  children?: ReactNode;
+  className?: string;
+}
 
-export interface LayoutProps extends Omit<DivProps, 'color' | 'role' | 'ref'> {
+export interface LayoutCss {
   position?: Position;
   display?: Display;
   justifyContent?: JustifyContent;
@@ -33,16 +38,60 @@ export interface LayoutProps extends Omit<DivProps, 'color' | 'role' | 'ref'> {
   overflow?: Overflow;
   zIndex?: ZIndex;
   background?: Background;
-  breakpointXs?: LayoutCssBreakpointProps;
-  breakpointSm?: LayoutCssBreakpointProps;
-  breakpointMd?: LayoutCssBreakpointProps;
-  breakpointLg?: LayoutCssBreakpointProps;
-  breakpointXl?: LayoutCssBreakpointProps;
-  children?: ReactNode;
-  className?: string;
 }
 
-export const Layout = styled.div.withConfig({})<LayoutProps>(() => ({
-  test: 'test',
-}));
+export interface LayoutProps
+  extends LayoutCss,
+  LayoutNonCss,
+  Omit<DivProps, 'color' | 'role' | 'ref'> { }
+
+const mapProps: PropClassNameMap<Required<LayoutCss>> = {
+  position: toCssProp('position'),
+  display: toCssProp('display'),
+  justifyContent: toCssProp('justify-content'),
+  flexDirection: toCssProp('flex-direction'),
+  flexWrap: toCssProp('flex-wrap'),
+  alignSelf: toCssProp('align-self'),
+  alingItems: toCssProp('align-items'),
+  alignContent: toCssProp('align-content'),
+  cursor: toCssProp('cursor'),
+  overflow: toCssProp('overflow'),
+  zIndex: toCssProp('z-index'),
+  background: toCssProp('background'),
+};
+
+export type PropClassNameMap<T> = {
+  [P in keyof T]: (
+    props: ThemedStyledProps<Partial<T>, ThemeContextValue>,
+    value: T[P],
+  ) => string | void | null;
+};
+
+export function getLayoutStyles<T extends {}>(
+  props: ThemedStyledProps<T, ThemeContextValue>,
+  map: PropClassNameMap<Required<T>>,
+) {
+  let styles = '';
+
+  for (const propName in props as T) {
+    if (propName in map) {
+      const propValue = props[propName];
+
+      styles += map[propName](props, propValue);
+    }
+  }
+
+  return styles;
+}
+
+export function toCssProp<P extends {}>(cssProp: keyof StandardPropertiesHyphen) {
+  return (_props: P, propValue: unknown) => {
+    return `${cssProp}: ${propValue} !important;`;
+  };
+}
+
+export const Layout = styled.div.withConfig({})<LayoutProps>((props) =>
+  getLayoutStyles(props, mapProps),
+) as StyledComponent<'div', never, LayoutProps, never>;
+
 Layout.displayName = 'Layout';
