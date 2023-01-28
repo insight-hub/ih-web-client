@@ -2,6 +2,6 @@
 
 exports[`Row should render correct 1`] = `
 <div
-  className="sc-bcXHqe sc-gswNZR dpNPGM cnJYyj"
+  className="sc-bcXHqe sc-gswNZR  khhSNF"
 />
 `;

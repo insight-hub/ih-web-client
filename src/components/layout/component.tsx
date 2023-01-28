@@ -23,8 +23,19 @@ export function getLayoutStyles<T extends {}>(
   return styles;
 }
 
-export const Layout = styled.div.withConfig({})<LayoutProps>((props) =>
-  getLayoutStyles(props, mapProps),
-) as StyledComponent<'div', never, LayoutProps, never>;
+export const Layout = styled.div.withConfig({
+  shouldForwardProp: (prop, fn) => {
+    if (prop in mapProps) {
+      return false;
+    }
+
+    return fn(prop);
+  },
+})<LayoutProps>((props) => getLayoutStyles(props, mapProps)) as StyledComponent<
+  'div',
+  never,
+  LayoutProps,
+  never
+>;
 
 Layout.displayName = 'Layout';

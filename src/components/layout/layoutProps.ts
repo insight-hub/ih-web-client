@@ -1,3 +1,4 @@
+import { StandardLonghandProperties } from 'csstype';
 import { DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react';
 
 import { ThemeContextValue, ThemedStyledProps } from 'src/components/utils-styled-components';
@@ -42,6 +43,8 @@ export interface LayoutCss {
   overflow?: Overflow;
   zIndex?: ZIndex;
   background?: Background;
+  height?: StandardLonghandProperties['height'];
+  width?: StandardLonghandProperties['width'];
 }
 
 type DivProps = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
@@ -64,4 +67,6 @@ export const mapProps: PropClassNameMap<Required<LayoutCss>> = {
   overflow: toCssProp('overflow'),
   zIndex: toCssProp('z-index'),
   background: toCssProp('background'),
+  height: toCssProp('height'),
+  width: toCssProp('width'),
 };
