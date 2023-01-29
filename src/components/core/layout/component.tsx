@@ -3,7 +3,7 @@ import {
   StyledComponent,
   ThemeContextValue,
   ThemedStyledProps,
-} from '../utils-styled-components';
+} from '../../utils-styled-components';
 import { mapProps, LayoutProps, PropClassNameMap } from './';
 
 export function getLayoutStyles<T extends {}>(

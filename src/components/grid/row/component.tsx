@@ -1,8 +1,7 @@
 import React, { ReactNode } from 'react';
 
-import { AlignItems, JustifyContent } from 'src/components/layout';
+import { AlignItems, JustifyContent, Layout } from 'src/components/core/layout';
 import { styled } from 'src/components/utils-styled-components';
-import { Layout } from 'src/components/layout';
 
 interface Props {
   alignItems?: AlignItems;
