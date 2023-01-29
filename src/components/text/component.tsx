@@ -2,7 +2,7 @@ import { StandardLonghandProperties } from 'csstype';
 import { ReactNode } from 'react';
 
 import { styled } from '../utils-styled-components';
-import { getLayoutStyles, mapProps, PropClassNameMap, toCssProp } from '../layout';
+import { getLayoutStyles, mapProps, PropClassNameMap, toCssProp } from '../core';
 
 export enum textType {
   H1 = 'h1',

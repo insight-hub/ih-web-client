@@ -81,12 +81,6 @@ export enum Background {
   DarkGray = 'dark-gray',
 }
 
-export enum Color {
-  Base = 'base',
-  Danger = 'danger',
-  Secondary = 'secondary',
-}
-
 export enum FontSize {
   Size1 = 'font-size-1',
   Size2 = 'font-size-2',
