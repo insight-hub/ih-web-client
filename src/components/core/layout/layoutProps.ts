@@ -38,6 +38,7 @@ export interface LayoutBreackpointCss {
   width?: StandardLonghandProperties['width'];
   minWidth?: StandardLonghandProperties['minWidth'];
   minHeigth?: StandardLonghandProperties['minHeight'];
+  visibility?: StandardLonghandProperties['visibility'];
   margin?: Margin;
   padding?: Padding;
 }
