@@ -93,3 +93,28 @@ export enum FontWeight {
   SemiBold = 'semibold',
   Bold = 'bold',
 }
+
+export type MarginValue = 0 | 0.5 | 1 | 2 | 3 | 4 | 5 | 'auto';
+
+export type MarginValues = {
+  top?: MarginValue;
+  right?: MarginValue;
+  bottom?: MarginValue;
+  left?: MarginValue;
+  x?: MarginValue;
+  y?: MarginValue;
+};
+
+export type PaddingValue = 0 | 0.5 | 1 | 2 | 3 | 4 | 5 | 'auto';
+
+export type PaddingValues = {
+  top?: PaddingValue;
+  right?: PaddingValue;
+  bottom?: PaddingValue;
+  left?: PaddingValue;
+  x?: PaddingValue;
+  y?: PaddingValue;
+};
+
+export type Margin = MarginValue | MarginValues;
+export type Padding = PaddingValue | PaddingValues;
