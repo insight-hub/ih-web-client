@@ -77,6 +77,7 @@ const breackpointProps: PropClassNameMap<Required<LayoutBreackpointCss>> = {
   minHeigth: toCssProp('min-height'),
   margin: (_, v) => getSpacingStyles(v, 'margin'),
   padding: (_, v) => getSpacingStyles(v, 'padding'),
+  visibility: toCssProp('visibility'),
 };
 
 export const mapProps: PropClassNameMap<Required<LayoutCss>> = {

@@ -2,7 +2,7 @@ import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 
 import { Layout } from './layouts';
-import { Profile, Calendar } from './pages';
+import { Profile, Calendar, Welcome } from './pages';
 
 export default createBrowserRouter([
   {
@@ -11,7 +11,7 @@ export default createBrowserRouter([
     children: [
       {
         index: true,
-        element: React.createElement('h1', {}, 'HOME'),
+        element: <Welcome />,
       },
       {
         path: '/profile',
