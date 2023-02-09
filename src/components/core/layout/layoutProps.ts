@@ -2,6 +2,7 @@ import { StandardLonghandProperties } from 'csstype';
 import { DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react';
 
 import { ThemeContextValue, ThemedStyledProps } from 'src/components/utils-styled-components';
+import { Color } from '../color/color';
 import {
   Position,
   Display,
@@ -20,7 +21,7 @@ import {
   Margin,
   PaddingValue,
 } from './';
-import { getSpacingStyles, toCssProp } from './utils';
+import { BorderRadius, getBorderRadiusStyles, getSpacingStyles, toCssProp } from './utils';
 
 export type PropClassNameMap<T> = {
   [P in keyof T]: (
@@ -57,6 +58,8 @@ export interface LayoutCss extends LayoutBreackpointCss {
   alignSelf?: AlignSelf;
   alignItems?: AlignItems;
   alignContent?: AlignContent;
+  borderRadius?: BorderRadius;
+  backgroundColor?: Color;
   cursor?: Cursor;
   overflow?: Overflow;
   zIndex?: ZIndex;
@@ -99,6 +102,8 @@ export const mapProps: PropClassNameMap<Required<LayoutCss>> = {
   alignSelf: toCssProp('align-self'),
   alignItems: toCssProp('align-items'),
   alignContent: toCssProp('align-content'),
+  borderRadius: toCssProp('border-radius'),
+  backgroundColor: toCssProp('background-color'),
   cursor: toCssProp('cursor'),
   overflow: toCssProp('overflow'),
   zIndex: toCssProp('z-index'),

@@ -54,3 +54,18 @@ export function getSpacingStyles(val: Margin | Padding, type: 'margin' | 'paddin
 
   return css(directionalProperty(type, getSpacingVal(val))).join('');
 }
+
+// TODO refactor
+export enum BorderRadius {
+  None = 'none',
+  Small = '5px',
+  Medium = '13px',
+  Large = '50%',
+  Rounded = '100%',
+}
+
+export function getBorderRadiusStyles(opts: BorderRadius) {
+  return () => css`
+    border-radius: ${opts};
+  `;
+}

@@ -4,3 +4,4 @@ export { Text } from './text';
 export * from './core/layout/types';
 export * from './core';
 export * from './core/color/color';
+export * from './form';
