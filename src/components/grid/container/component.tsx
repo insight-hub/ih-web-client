@@ -13,8 +13,9 @@ const ScContainer = styled(Layout)`
 
 interface Props {
   children: any;
+  width?: string;
 }
 
-export const Container: React.FC<Props> = () => {
-  return <ScContainer breackpointLg={{ width: '1200px' }} />;
+export const Container: React.FC<Props> = (props) => {
+  return <ScContainer breackpointLg={{ width: props.width ?? '1200px' }} {...props} />;
 };

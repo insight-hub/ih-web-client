@@ -1,12 +1,15 @@
 import React, { ReactNode } from 'react';
 
-import { AlignItems, JustifyContent, Layout } from 'src/components/core/layout';
+import { AlignItems, JustifyContent, Layout, Padding } from 'src/components/core/layout';
 import { styled } from 'src/components/utils-styled-components';
 
 interface Props {
   alignItems?: AlignItems;
-  jusifyContent?: JustifyContent;
+  justifyContent?: JustifyContent;
+  width?: string;
+  height?: string;
   children?: ReactNode;
+  padding?: Padding;
 }
 
 const ScRow = styled(Layout)`

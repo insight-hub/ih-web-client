@@ -1,7 +1,7 @@
 import { StandardPropertiesHyphen } from 'csstype';
 import { directionalProperty } from 'polished';
 import { ThemeContextValue } from 'src/components/utils-styled-components';
-import { css, CSSObject, ThemedStyledProps } from 'styled-components';
+import { css, ThemedStyledProps } from 'styled-components';
 import { PropClassNameMap } from './layoutProps';
 import { Margin, MarginValue, Padding, PaddingValue } from './types';
 

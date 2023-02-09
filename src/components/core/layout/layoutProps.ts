@@ -18,6 +18,7 @@ import {
   getLayoutStyles,
   Padding,
   Margin,
+  PaddingValue,
 } from './';
 import { getSpacingStyles, toCssProp } from './utils';
 
@@ -41,6 +42,10 @@ export interface LayoutBreackpointCss {
   visibility?: StandardLonghandProperties['visibility'];
   margin?: Margin;
   padding?: Padding;
+  paddingTop?: PaddingValue;
+  paddingBot?: PaddingValue;
+  paddingLeft?: PaddingValue;
+  paddingRight?: PaddingValue;
 }
 
 export interface LayoutCss extends LayoutBreackpointCss {
@@ -50,7 +55,7 @@ export interface LayoutCss extends LayoutBreackpointCss {
   flexDirection?: FlexDirection;
   flexWrap?: FlexWrap;
   alignSelf?: AlignSelf;
-  alingItems?: AlignItems;
+  alignItems?: AlignItems;
   alignContent?: AlignContent;
   cursor?: Cursor;
   overflow?: Overflow;
@@ -78,6 +83,10 @@ const breackpointProps: PropClassNameMap<Required<LayoutBreackpointCss>> = {
   margin: (_, v) => getSpacingStyles(v, 'margin'),
   padding: (_, v) => getSpacingStyles(v, 'padding'),
   visibility: toCssProp('visibility'),
+  paddingTop: toCssProp('padding-top'),
+  paddingBot: toCssProp('padding-bottom'),
+  paddingLeft: toCssProp('padding-left'),
+  paddingRight: toCssProp('padding-right'),
 };
 
 export const mapProps: PropClassNameMap<Required<LayoutCss>> = {
@@ -88,7 +97,7 @@ export const mapProps: PropClassNameMap<Required<LayoutCss>> = {
   flexDirection: toCssProp('flex-direction'),
   flexWrap: toCssProp('flex-wrap'),
   alignSelf: toCssProp('align-self'),
-  alingItems: toCssProp('align-items'),
+  alignItems: toCssProp('align-items'),
   alignContent: toCssProp('align-content'),
   cursor: toCssProp('cursor'),
   overflow: toCssProp('overflow'),

@@ -3,7 +3,7 @@ import { styled } from '../utils-styled-components';
 
 import { CoreInteractive, Color } from 'src/components/core';
 
-type ButtonVariant = 'primary' | 'danger' | 'secondary';
+type ButtonVariant = 'primary' | 'danger' | 'secondary' | 'outline';
 
 interface Props {
   onClick?: MouseEventHandler<HTMLButtonElement>;
@@ -19,7 +19,14 @@ interface ScProps {
 // TODO
 const ScButton = styled(CoreInteractive) <ScProps>`
   display: inline-block;
-  border: none;
+  border: ${(props) => {
+    switch (props.$variant) {
+      case 'outline':
+        return `1px solid ${Color.White}`;
+      default:
+        return 'none';
+    }
+  }};
   border-radius: 5px;
   padding: 5px 20px;
   color: white;
@@ -31,17 +38,9 @@ const ScButton = styled(CoreInteractive) <ScProps>`
       case 'primary':
         return Color.Primary;
       default:
-        return Color.White;
+        return 'transparent';
     }
   }};
-
-  &:hover {
-    background-color: ${Color.PrimaryHovered};
-  }
-
-  &:focus {
-    background-color: ${Color.PrimaryHovered};
-  }
 `;
 
 const Button: ForwardRefRenderFunction<HTMLButtonElement, Props> = (props, ref) => {

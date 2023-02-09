@@ -2,7 +2,7 @@ import { StandardLonghandProperties } from 'csstype';
 import { ReactNode } from 'react';
 
 import { styled } from '../utils-styled-components';
-import { getLayoutStyles, mapProps, PropClassNameMap, toCssProp } from '../core';
+import { Color, getLayoutStyles, mapProps, PropClassNameMap, toCssProp } from '../core';
 
 export enum textType {
   H1 = 'h1',
@@ -20,7 +20,7 @@ interface NonCssProp {
 interface CssProps {
   weigth?: StandardLonghandProperties['fontWeight'];
   size?: StandardLonghandProperties['fontSize'];
-  color?: StandardLonghandProperties['color'];
+  color?: StandardLonghandProperties['color'] | Color;
 }
 
 type Props = NonCssProp & CssProps;
@@ -33,9 +33,11 @@ const textPropMap: PropClassNameMap<Required<CssProps>> = {
 };
 
 export const Text = styled.p
-  .attrs((props: Props) => ({
-    as: props.type && textType.P,
-  }))
+  .attrs((props: Props) => {
+    return {
+      as: props.type ?? textType.P,
+    };
+  })
   .withConfig({
     shouldForwardProp: (prop, fn) => {
       if (prop in textPropMap) {

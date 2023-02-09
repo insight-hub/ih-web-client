@@ -6,4 +6,5 @@ export const enum Color {
   Danger = '#dc3545',
   Secondary = '#6c757d',
   TextRegular = '#242424',
+  TextTransparent = 'rgba(255, 255, 255, .6)',
 }
