@@ -52,6 +52,10 @@ const ScPouredButton = styled(ScButtonBase)`
   &:hover {
     background-color: ${injectThemeValue('primaryColorHovered')};
   }
+
+  &:focus {
+    background-color: ${injectThemeValue('primaryColorHovered')};
+  }
 `;
 
 const ScOutlinedButton = styled(ScButtonBase)`
