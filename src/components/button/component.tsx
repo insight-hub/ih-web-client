@@ -1,9 +1,9 @@
 import React, { forwardRef, ForwardRefRenderFunction, MouseEventHandler, ReactNode } from 'react';
+
 import { styled } from '../utils-styled-components';
+import { CoreInteractive, injectThemeValue } from 'src/components/core';
 
-import { CoreInteractive, Color } from 'src/components/core';
-
-type ButtonVariant = 'primary' | 'danger' | 'secondary' | 'outline';
+type ButtonVariant = 'primary' | 'danger' | 'secondary' | 'outline' | 'outline--primary';
 type ButtonSize = 'sm' | 'md' | 'lg';
 
 interface Props {
@@ -15,7 +15,6 @@ interface Props {
 }
 
 interface ScProps {
-  $variant: Props['variant'];
   $size: Props['size'];
 }
 
@@ -25,45 +24,49 @@ const ButtonInternalSize = {
   md: '7px 20px',
 };
 
+const ButtonInternalFontSize = {
+  sm: '0.8rem',
+  md: '0.9rem',
+  lg: '1.1rem',
+};
+
 // TODO
-const ScButton = styled(CoreInteractive) <ScProps>`
+const ScButtonBase = styled(CoreInteractive) <ScProps>`
   display: inline-block;
-  border: ${(props) => {
-    switch (props.$variant) {
-      case 'outline':
-        return `1px solid ${Color.White}`;
-      default:
-        return 'none';
-    }
-  }};
   border-radius: 5px;
   padding: ${(props) => (props.$size ? ButtonInternalSize[props.$size] : '5px 20px')};
+  border: none;
+  background-color: transparent;
+  // contrast themed color
   color: white;
-  font-size: ${(props) => {
-    switch (props.$size) {
-      case 'md':
-        return '1rem';
-      case 'lg':
-        return '1rem';
-      default:
-        return '0.9rem';
-    }
-  }};
   outline: none;
   cursor: pointer;
-  background-color: ${(props) => {
-    switch (props.$variant) {
-      case 'primary':
-        return Color.Primary;
-      default:
-        return 'transparent';
-    }
-  }};
-  font-weight: bold;
+  font-size: ${(props) =>
+    props.$size ? ButtonInternalFontSize[props.$size] : ButtonInternalSize['md']};
+  font-weight: ${(props) => props.$size === 'lg' && 'bold'};
+`;
+
+const ScPouredButton = styled(ScButtonBase)`
+  background-color: ${injectThemeValue('primaryColor')};
+
+  &:hover {
+    background-color: ${injectThemeValue('primaryColorHovered')};
+  }
+`;
+
+const ScOutlinedButton = styled(ScButtonBase)`
+  border: 1px solid white;
 `;
 
 const Button: ForwardRefRenderFunction<HTMLButtonElement, Props> = (props, ref) => {
-  return <ScButton $size={props.size} $variant={props.variant} {...props} ref={ref} />;
+  switch (props.variant) {
+    case 'primary':
+      return <ScPouredButton $size={props.size} ref={ref} {...props} />;
+    case 'outline':
+      return <ScOutlinedButton $size={props.size} ref={ref} {...props} />;
+    default:
+      return <ScButtonBase $size={props.size} ref={ref} {...props} />;
+  }
 };
 
 export default forwardRef(Button);

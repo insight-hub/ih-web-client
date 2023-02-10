@@ -6,12 +6,7 @@ interface Props extends LayoutProps {
   children: ReactNode;
 }
 
-const ScForm = styled(Layout).attrs(() => ({ as: 'form' }))`
-  // TODO
-  > * {
-    margin: 0.4rem 0;
-  }
-`;
+const ScForm = styled(Layout).attrs(() => ({ as: 'form' }))``;
 
 // TODO typing
 const Form: ForwardRefRenderFunction<HTMLFormElement, Props> = (props, ref) => {

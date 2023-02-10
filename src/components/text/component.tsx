@@ -2,7 +2,16 @@ import { StandardLonghandProperties } from 'csstype';
 import { ReactNode } from 'react';
 
 import { styled } from '../utils-styled-components';
-import { Color, getLayoutStyles, mapProps, PropClassNameMap, toCssProp } from '../core';
+import {
+  Color,
+  getLayoutStyles,
+  getSpacingStyles,
+  mapProps,
+  Margin,
+  Padding,
+  PropClassNameMap,
+  toCssProp,
+} from '../core';
 
 export enum textType {
   H1 = 'h1',
@@ -21,6 +30,9 @@ interface CssProps {
   weigth?: StandardLonghandProperties['fontWeight'];
   size?: StandardLonghandProperties['fontSize'];
   color?: StandardLonghandProperties['color'] | Color;
+  padding?: Padding;
+  margin?: Margin;
+  lineHeight?: StandardLonghandProperties['lineHeight'];
 }
 
 type Props = NonCssProp & CssProps;
@@ -30,6 +42,9 @@ const textPropMap: PropClassNameMap<Required<CssProps>> = {
   weigth: toCssProp('font-weight'),
   size: toCssProp('font-size'),
   color: toCssProp('color'),
+  padding: (_, v) => getSpacingStyles(v, 'padding'),
+  margin: (_, v) => getSpacingStyles(v, 'margin'),
+  lineHeight: toCssProp('line-height'),
 };
 
 export const Text = styled.p

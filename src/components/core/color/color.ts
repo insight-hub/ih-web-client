@@ -7,4 +7,5 @@ export const enum Color {
   Secondary = '#6c757d',
   TextRegular = '#242424',
   TextTransparent = 'rgba(255, 255, 255, .6)',
+  LigthGray = '#e1e4e8',
 }

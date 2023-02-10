@@ -1,8 +1,5 @@
 import * as sc from 'styled-components';
-
-export interface ThemeContextValue {
-  name: 'light' | 'dark';
-}
+import { ThemeContextValue } from 'src/components/core';
 
 type ScTypes = sc.ThemedStyledComponentsModule<ThemeContextValue>;
 

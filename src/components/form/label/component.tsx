@@ -9,6 +9,7 @@ interface Props {
 
 const ScLabel = styled.label`
   color: #24292e;
+  font-size: ${(props) => props.theme.textRegularSize};
 `;
 
 export const Label: React.FC<Props> = (props) => {
