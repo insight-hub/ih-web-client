@@ -14,9 +14,11 @@ import {
   Row,
   Text,
   Form,
+  Hint,
+  FormGroup,
+  theme,
 } from 'src/components';
 import { textType } from 'src/components/text';
-import { capitalize } from 'src/utils/text';
 
 export const Welcome = () => {
   const formRef = useRef<HTMLFormElement>(null);
@@ -55,19 +57,28 @@ export const Welcome = () => {
             backgroundColor={Color.White}
             ref={formRef}
           >
-            <Input name="Username" label={capitalize('username')} />
-            <Input name="Email" label={capitalize('email')} />
-            <Input
-              name="Password"
-              label={capitalize('password')}
-              hint="Make sure it's at least 15 characters OR at least 8 characters including a number and a lowercase letter."
-            />
-
-            <Button onClick={handleCreateAccount} size="lg" variant="primary">
-              Create account
-            </Button>
-
-            <Text size="0.8rem" color="rgba(0, 0, 0, .7)" margin={{ top: 1 }}>
+            <FormGroup>
+              <Label id="username" label="Username" />
+              <Input name="username" />
+            </FormGroup>
+            <FormGroup>
+              <Label id="email" label="Email" />
+              <Input name="email" />
+            </FormGroup>
+            <FormGroup>
+              <Label id="password" label="Password" />
+              <Input name="password" />
+              <Hint>
+                Make sure it's at least 15 characters OR at least 8 characters including a number
+                and a lowercase letter.
+              </Hint>
+            </FormGroup>
+            <Layout padding={{ top: 0.5 }}>
+              <Button onClick={handleCreateAccount} size="lg" variant="primary" fullWidth>
+                Create account
+              </Button>
+            </Layout>
+            <Text size={theme.textSecondarySize} color={Color.Secondary} margin={{ top: 1 }}>
               By clicking «Create account», you agree to our <a href="/">Terms of Service</a> and{' '}
               <a href="/">Privacy Statement</a>. We’ll occasionally send you account related emails.
             </Text>
