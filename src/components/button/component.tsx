@@ -12,10 +12,12 @@ interface Props {
   variant?: ButtonVariant;
   size?: ButtonSize;
   children?: ReactNode;
+  fullWidth?: boolean;
 }
 
 interface ScProps {
   $size: Props['size'];
+  $fullWidth: Props['fullWidth'];
 }
 
 const ButtonInternalSize = {
@@ -33,6 +35,7 @@ const ButtonInternalFontSize = {
 // TODO
 const ScButtonBase = styled(CoreInteractive) <ScProps>`
   display: inline-block;
+  width: ${(props) => (props.$fullWidth ? '100%' : '')};
   border-radius: 5px;
   padding: ${(props) => (props.$size ? ButtonInternalSize[props.$size] : '5px 20px')};
   border: none;
@@ -65,11 +68,15 @@ const ScOutlinedButton = styled(ScButtonBase)`
 const Button: ForwardRefRenderFunction<HTMLButtonElement, Props> = (props, ref) => {
   switch (props.variant) {
     case 'primary':
-      return <ScPouredButton $size={props.size} ref={ref} {...props} />;
+      return (
+        <ScPouredButton $fullWidth={props.fullWidth} $size={props.size} ref={ref} {...props} />
+      );
     case 'outline':
-      return <ScOutlinedButton $size={props.size} ref={ref} {...props} />;
+      return (
+        <ScOutlinedButton $fullWidth={props.fullWidth} $size={props.size} ref={ref} {...props} />
+      );
     default:
-      return <ScButtonBase $size={props.size} ref={ref} {...props} />;
+      return <ScButtonBase $fullWidth={props.fullWidth} $size={props.size} ref={ref} {...props} />;
   }
 };
 

@@ -29,7 +29,7 @@ class Theme implements ThemeContextValue {
 
   textRegularSize = toRem(this.baseFontSize);
   textLargeSize = toRem(this.baseFontSize * 1.6);
-  textSecondarySize = toRem(this.baseFontSize / 1.6);
+  textSecondarySize = toRem(12);
 
   textRegularColor = Color.TextRegular;
   textSecondaryColor = Color.Secondary;
