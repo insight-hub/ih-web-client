@@ -19,7 +19,7 @@
       "react": ["node_modules/@types/react/index.d.ts"],
       "jest": ["node_modules/@types/jest/index.d.ts"]
     },
-    "types": ["react", "jest"]
+    "types": ["react", "jest", "node"]
   },
   "exclude": ["testing", "node_modules", "scripts"]
 }
