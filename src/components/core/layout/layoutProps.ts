@@ -1,8 +1,9 @@
 import { StandardLonghandProperties } from 'csstype';
 import { DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react';
 
-import { ThemeContextValue, ThemedStyledProps } from 'src/components/utils-styled-components';
+import { ThemedStyledProps } from 'src/components/utils-styled-components';
 import { Color } from '../color/color';
+import { ThemeContextValue } from '../theme';
 import {
   Position,
   Display,
@@ -21,7 +22,7 @@ import {
   Margin,
   PaddingValue,
 } from './';
-import { BorderRadius, getBorderRadiusStyles, getSpacingStyles, toCssProp } from './utils';
+import { BorderRadius, getSpacingStyles, toCssProp } from './utils';
 
 export type PropClassNameMap<T> = {
   [P in keyof T]: (

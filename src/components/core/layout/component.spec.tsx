@@ -25,7 +25,7 @@ function getOptionalProps(): LayoutProps {
     flexWrap: FlexWrap.Wrap,
     alignContent: AlignContent.Around,
     alignSelf: AlignSelf.Center,
-    alingItems: AlignItems.Center,
+    alignItems: AlignItems.Center,
     cursor: Cursor.Pointer,
     overflow: Overflow.Scroll,
     zIndex: ZIndex.Above,
