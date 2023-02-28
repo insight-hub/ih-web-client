@@ -1,4 +1,6 @@
 import React, { SyntheticEvent, useRef } from 'react';
+import { observer } from 'mobx-react-lite';
+
 import {
   AlignItems,
   BorderRadius,
@@ -17,11 +19,26 @@ import {
   Hint,
   FormGroup,
   theme,
+  useInjection,
 } from 'src/components';
 import { textType } from 'src/components/text';
+import { TYPES } from 'src/models';
+import { User } from 'src/models/user';
 
-export const Welcome = () => {
+export const Welcome = observer(() => {
   const formRef = useRef<HTMLFormElement>(null);
+  const userModel = useInjection<User>(TYPES.User);
+
+  // TODO Input proxy
+  const onUserNameChange = (e: SyntheticEvent) => {
+    const target = e.target as HTMLInputElement;
+    userModel.setUserName(target.value);
+  };
+
+  const onEmailChange = (e: SyntheticEvent) => {
+    const target = e.target as HTMLInputElement;
+    userModel.setEmail(target.value);
+  };
 
   const handleCreateAccount = (e: SyntheticEvent) => {
     e.preventDefault();
@@ -59,11 +76,11 @@ export const Welcome = () => {
           >
             <FormGroup>
               <Label id="username" label="Username" />
-              <Input name="username" />
+              <Input value={userModel.userName} onChange={onUserNameChange} name="username" />
             </FormGroup>
             <FormGroup>
               <Label id="email" label="Email" />
-              <Input name="email" />
+              <Input value={userModel.email} onChange={onEmailChange} name="email" />
             </FormGroup>
             <FormGroup>
               <Label id="password" label="Password" />
@@ -94,4 +111,4 @@ export const Welcome = () => {
       </Row>
     </>
   );
-};
+});
