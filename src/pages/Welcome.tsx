@@ -43,7 +43,7 @@ export const Welcome = () => {
           <Text type={textType.H1} weigth="bold" size="2.5rem" color="white">
             Discover and Connect with Like-Minded People.
           </Text>
-          <Text padding={{ top: 1 }} lineHeight={1.3} size={'1.3rem'} color={Color.TextTransparent}>
+          <Text padding={{ top: 2 }} lineHeight={1.3} size={'1.3rem'} color={Color.TextTransparent}>
             Community dedicated to sharing knowledge, building connections, and&#160;growing
             together. Join now to connect with experts and explore new ideas.
           </Text>
@@ -79,8 +79,15 @@ export const Welcome = () => {
               </Button>
             </Layout>
             <Text size={theme.textSecondarySize} color={Color.Secondary} margin={{ top: 1 }}>
-              By clicking «Create account», you agree to our <a href="/">Terms of Service</a> and{' '}
-              <a href="/">Privacy Statement</a>. We’ll occasionally send you account related emails.
+              By clicking «Create account», you agree to our{' '}
+              <a target="_blank" href="/">
+                Terms of Service
+              </a>{' '}
+              and{' '}
+              <a target="_blank" href="/">
+                Privacy Statement
+              </a>
+              . We’ll occasionally send you account related emails.
             </Text>
           </Form>
         </Column>
