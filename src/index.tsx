@@ -7,7 +7,7 @@ import router from './router';
 import { theme } from 'src/components/core';
 import { ThemeProvider } from 'styled-components';
 import { Provider as IOCProvider } from 'src/components/utils-ioc/provider';
-import { container as iocContainer } from 'src/models';
+import { container as iocContainer } from 'src/iocContainer';
 
 import './styles/index.scss';
 

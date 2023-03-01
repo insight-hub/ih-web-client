@@ -1,2 +1,1 @@
-export * from './types';
-export * from './ioc';
+export * from './user';

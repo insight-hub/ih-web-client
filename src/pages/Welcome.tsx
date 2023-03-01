@@ -22,7 +22,7 @@ import {
   useInjection,
 } from 'src/components';
 import { textType } from 'src/components/text';
-import { TYPES } from 'src/models';
+import { TYPES } from 'src/iocContainer';
 import { User } from 'src/models/user';
 
 export const Welcome = observer(() => {
