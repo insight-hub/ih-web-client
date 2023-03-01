@@ -2,6 +2,12 @@ export type Request = {
   method: 'GET' | 'POST' | 'PUT' | 'DELETE';
   path: string;
   headers?: Record<string, string>;
+  form?: FormDataEntry[];
+};
+
+export type FormDataEntry = {
+  name: string;
+  value: string;
 };
 
 type RequestFactory<Params> = (req: Params) => Request;

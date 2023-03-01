@@ -41,6 +41,14 @@ export class Api {
       headers,
     };
 
+    if (Array.isArray(params.form)) {
+      const formData = new FormData();
+      for (const item of params.form) {
+        formData.append(item.name, item.value);
+      }
+      init.body = formData;
+    }
+
     return fetch(url, init).then((res) => {
       if (res.ok) {
         return res.json();
