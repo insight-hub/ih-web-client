@@ -1,6 +1,7 @@
 import { makeAutoObservable } from 'mobx';
-import { decorate, injectable } from 'inversify';
+import { injectable } from 'inversify';
 
+@injectable()
 export class User {
   userName: string = '';
   email: string = '';
@@ -17,5 +18,3 @@ export class User {
     this.email = val;
   }
 }
-
-decorate(injectable(), User);

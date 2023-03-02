@@ -2,11 +2,7 @@ import { Container } from 'inversify';
 
 import { User } from './models/user';
 import { Api } from './api/api';
-
-export const TYPES = {
-  User: Symbol.for('User'),
-  Api: Symbol.for('Api'),
-};
+import { TYPES } from './iocTypes';
 
 export const container = new Container();
 
