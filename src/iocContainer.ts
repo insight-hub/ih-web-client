@@ -1,14 +1,19 @@
 import { Container } from 'inversify';
 
-import { User } from './models/user';
 import { Api } from './api/api';
 import { TYPES } from './iocTypes';
+import { CreateAcoountController } from './models/account.controller';
+import { Account } from './models/account.model';
 
 export const container = new Container();
 
 container
   .bind<Api>(TYPES.Api)
   // TODO api config service
-  .toDynamicValue(() => new Api({ base: 'https://localhost:1234' }))
+  .toDynamicValue(() => new Api({ base: 'http://localhost:1234' }))
   .inSingletonScope();
-container.bind<User>(TYPES.User).to(User).inSingletonScope();
+container.bind<Account>(TYPES.Account).to(Account).inSingletonScope();
+container
+  .bind<CreateAcoountController>(TYPES.CreateAccountController)
+  .to(CreateAcoountController)
+  .inSingletonScope();

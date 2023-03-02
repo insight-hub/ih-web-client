@@ -1,6 +1,6 @@
-import { createUser } from './user.codecs';
+import { createAccount } from './account.codecs';
 
-const handlers = [createUser] as const;
+const handlers = [createAccount] as const;
 
 const handlersMap: Map<ApiHandlerTypes, ApiHandlers> = new Map();
 for (let h of handlers) {

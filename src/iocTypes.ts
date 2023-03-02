@@ -1,4 +1,5 @@
 export const TYPES = {
-  User: Symbol.for('User'),
+  Account: Symbol.for('Account'),
   Api: Symbol.for('Api'),
+  CreateAccountController: Symbol.for('CreateAccountController'),
 };
