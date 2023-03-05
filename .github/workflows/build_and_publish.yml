@@ -1,0 +1,27 @@
+name: DEPLOY TO DEV
+
+on:
+  push:
+    branches: 'develop'
+
+
+jobs:
+  needs: [lint_and_test]
+  env:
+    LOGIN: ${{secrets.DOKER_LOGIN}}
+    NAME: ${{secrets.DOKER_NAME}}
+
+  - steps:
+    - name: Get current date
+      id: date
+      run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+
+    - name: Login to docker
+      run: echo ${{secrets.DOCKER_PWD}} | docker login -u ${{secrets.DOCKER_LOGIN}} --password-stdin
+
+    - uses: actions/checkout@v3
+    - name: Build image
+      run: docker build -t $LOGIN/$NAME:dev-${{steps.date.outputs.date}} -f Dockerfile .
+
+    - name: Push image
+      run: docker push $LOGIN/$NAME:dev-${{steps.date.outputs.date}}
