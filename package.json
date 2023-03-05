@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server",
     "build": "cross-env NODE_ENV=prod webpack",
-    "unit:watch": "jest --watch"
+    "unit:watch": "jest --watch",
+    "jest:coverage": "jest --coverage"
   },
   "author": "",
   "license": "ISC",
