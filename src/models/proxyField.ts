@@ -1,37 +1,77 @@
+import { makeAutoObservable } from 'mobx';
+
 export interface IProxyField {
   readonly value: string;
-  setValue(val: string): void;
-  isValid: boolean;
+  readonly error: string | undefined;
+  readonly isValid: boolean;
+  setValue(value: string): void;
+  setError(ident: string): void;
+  cleanError(): void;
+}
+
+type ProxyFieldGetter = () => string;
+type ProxyFieldSetter = (val: string) => void;
+export type ProxyFieldValidator = (val: string) => string | undefined;
+
+export interface IProxyFieldConfig {
+  getter: ProxyFieldGetter;
+  setter: ProxyFieldSetter;
+  validator?: ProxyFieldValidator;
 }
 
 export class ProxyField implements IProxyField {
-  private getter;
-  private setter;
-  private validator;
+  private getter: ProxyFieldGetter;
+  private setter: ProxyFieldSetter;
+  private validator: ProxyFieldValidator | undefined;
 
-  constructor({
-    getter,
-    setter,
-    validator,
-  }: {
-    getter: () => string;
-    setter: (val: string) => void;
-    validator?: (val: string) => boolen;
-  }) {
-    this.getter = getter;
-    this.setter = setter;
-    this.validator = validator;
+  private _customError: string | undefined = undefined;
+  private errorValueSnapshot: string = '';
+
+  constructor(config: IProxyFieldConfig) {
+    makeAutoObservable(this);
+    this.getter = config.getter;
+    this.setter = config.setter;
+    if (config.validator) this.validator = config.validator;
   }
 
-  get value() {
+  get error(): string | undefined {
+    return this.validatorError || this.customError;
+  }
+
+  get isValid(): boolean {
+    return !this.validatorError && !this.customError;
+  }
+
+  private get validatorError(): string | undefined {
+    if (this.validator) {
+      return this.validator(this.value);
+    }
+
+    return undefined;
+  }
+
+  private get customError(): string | undefined {
+    if (this._customError && this.errorValueSnapshot === this.value) {
+      return this._customError;
+    }
+    return undefined;
+  }
+
+  get value(): string {
     return this.getter();
   }
 
-  get isValid() {
-    return this.validator(this.getter());
+  setValue(val: string): void {
+    this.setter(val);
   }
 
-  setValue(val: string) {
-    this.setter(val);
+  setError(ident: string) {
+    this._customError = ident;
+    this.errorValueSnapshot = this.value;
+  }
+
+  cleanError() {
+    this._customError = undefined;
+    this.errorValueSnapshot = '';
   }
 }
