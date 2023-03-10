@@ -103,6 +103,7 @@ export const Welcome = observer(() => {
                 value={formController.passwordField.value}
                 onChange={onPasswordChange}
                 name="password"
+                error
               />
               <Hint>
                 Make sure it's at least 15 characters OR at least 8 characters including a number

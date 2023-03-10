@@ -10,13 +10,9 @@ interface Props {
 const ScGroup = styled.div`
   margin: 0.5rem 0;
 
-  & > input {
-    margin-top: 0.5rem;
-    width: 96%;
-  }
-
   & > label {
     display: block;
+    margin-bottom: 0.5rem;
   }
 
   & > p {
