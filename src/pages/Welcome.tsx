@@ -63,7 +63,7 @@ export const Welcome = observer(() => {
         </Layout>
       </Row>
       <Row padding={{ top: 5 }}>
-        <Column cols={6}>
+        <Column cols={{ xs: 12, md: 6 }}>
           <Text type={textType.H1} weigth="bold" size="2.5rem" color="white">
             Discover and Connect with Like-Minded People.
           </Text>
@@ -95,6 +95,7 @@ export const Welcome = observer(() => {
                 value={formController.emailField.value}
                 onChange={onEmailChange}
                 name="email"
+                isValid={formController.emailField.isValid}
               />
             </FormGroup>
             <FormGroup>
@@ -103,7 +104,6 @@ export const Welcome = observer(() => {
                 value={formController.passwordField.value}
                 onChange={onPasswordChange}
                 name="password"
-                error
               />
               <Hint>
                 Make sure it's at least 15 characters OR at least 8 characters including a number
