@@ -63,7 +63,7 @@ export const Welcome = observer(() => {
             together. Join now to connect with experts and explore new ideas.
           </Text>
         </Column>
-        <Column offset={1} cols={5}>
+        <Column offset={1} cols={{ xs: 12, md: 5 }}>
           <Form
             display={Display.Flex}
             flexDirection={FlexDirection.Column}
