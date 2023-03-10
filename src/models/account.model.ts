@@ -10,16 +10,4 @@ export class Account {
   constructor() {
     makeAutoObservable(this);
   }
-
-  setUsername(val: string) {
-    this.username = val;
-  }
-
-  setEmail(val: string) {
-    this.email = val;
-  }
-
-  setPassword(val: string) {
-    this.password = val;
-  }
 }

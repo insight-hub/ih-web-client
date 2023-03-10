@@ -4,24 +4,20 @@ export interface IProxyField {
   readonly value: string;
   readonly error: string | undefined;
   readonly isValid: boolean;
-  setValue(value: string): void;
   setError(ident: string): void;
   cleanError(): void;
 }
 
 type ProxyFieldGetter = () => string;
-type ProxyFieldSetter = (val: string) => void;
 export type ProxyFieldValidator = (val: string) => string | undefined;
 
 export interface IProxyFieldConfig {
   getter: ProxyFieldGetter;
-  setter: ProxyFieldSetter;
   validator?: ProxyFieldValidator;
 }
 
 export class ProxyField implements IProxyField {
   private getter: ProxyFieldGetter;
-  private setter: ProxyFieldSetter;
   private validator: ProxyFieldValidator | undefined;
 
   private _customError: string | undefined = undefined;
@@ -30,7 +26,6 @@ export class ProxyField implements IProxyField {
   constructor(config: IProxyFieldConfig) {
     makeAutoObservable(this);
     this.getter = config.getter;
-    this.setter = config.setter;
     if (config.validator) this.validator = config.validator;
   }
 
@@ -47,7 +42,7 @@ export class ProxyField implements IProxyField {
       return this.validator(this.value);
     }
 
-    return undefined;
+    return '';
   }
 
   private get customError(): string | undefined {
@@ -59,10 +54,6 @@ export class ProxyField implements IProxyField {
 
   get value(): string {
     return this.getter();
-  }
-
-  setValue(val: string): void {
-    this.setter(val);
   }
 
   setError(ident: string) {

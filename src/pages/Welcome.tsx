@@ -24,25 +24,16 @@ import {
 import { textType } from 'src/components/text';
 import { TYPES } from 'src/iocTypes';
 import { CreateAcoountController } from 'src/models/account.controller';
+import { Account } from 'src/models/account.model';
 
 export const Welcome = observer(() => {
   const formRef = useRef<HTMLFormElement>(null);
   const formController = useInjection<CreateAcoountController>(TYPES.CreateAccountController);
 
-  // TODO Input proxy
-  const onUserNameChange = (e: SyntheticEvent) => {
+  const handleUserInput = (e: SyntheticEvent) => {
     const target = e.target as HTMLInputElement;
-    formController.usernameField.setValue(target.value);
-  };
 
-  const onEmailChange = (e: SyntheticEvent) => {
-    const target = e.target as HTMLInputElement;
-    formController.emailField.setValue(target.value);
-  };
-
-  const onPasswordChange = (e: SyntheticEvent) => {
-    const target = e.target as HTMLInputElement;
-    formController.passwordField.setValue(target.value);
+    formController.updateModelValue(target.name as keyof Account, target.value);
   };
 
   const handleCreateAccount = (e: SyntheticEvent) => {
@@ -85,7 +76,7 @@ export const Welcome = observer(() => {
               <Label id="username" label="Username" />
               <Input
                 value={formController.usernameField.value}
-                onChange={onUserNameChange}
+                onChange={handleUserInput}
                 name="username"
               />
             </FormGroup>
@@ -93,7 +84,7 @@ export const Welcome = observer(() => {
               <Label id="email" label="Email" />
               <Input
                 value={formController.emailField.value}
-                onChange={onEmailChange}
+                onChange={handleUserInput}
                 name="email"
                 isValid={formController.emailField.isValid}
               />
@@ -102,7 +93,7 @@ export const Welcome = observer(() => {
               <Label id="password" label="Password" />
               <Input
                 value={formController.passwordField.value}
-                onChange={onPasswordChange}
+                onChange={handleUserInput}
                 name="password"
               />
               <Hint>

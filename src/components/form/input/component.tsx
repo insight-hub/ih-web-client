@@ -44,11 +44,13 @@ const ScIconWrapper = styled.div`
 `;
 
 const Input: ForwardRefRenderFunction<HTMLInputElement, Props> = (props, ref) => {
+  const isValid = props.isValid ?? true;
+  console.log(isValid);
   return (
     <ScInputWrapper>
-      <ScInput {...props} $isValid={props.isValid} ref={ref} />
+      <ScInput {...props} $isValid={isValid} ref={ref} />
       <ScIconWrapper>
-        {props.isValid || <FontAwesomeIcon icon={faCircleExclamation} color={Color.Danger} />}
+        {isValid || <FontAwesomeIcon icon={faCircleExclamation} color={Color.Danger} />}
       </ScIconWrapper>
     </ScInputWrapper>
   );
