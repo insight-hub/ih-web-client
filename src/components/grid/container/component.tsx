@@ -17,5 +17,11 @@ interface Props {
 }
 
 export const Container: React.FC<Props> = (props) => {
-  return <ScContainer breackpointLg={{ width: props.width ?? '1200px' }} {...props} />;
+  return (
+    <ScContainer
+      breackpointXs={{ paddingRight: 1, paddingLeft: 1 }}
+      breackpointLg={{ width: props.width ?? '1200px' }}
+      {...props}
+    />
+  );
 };

@@ -63,11 +63,12 @@ export const Welcome = observer(() => {
             together. Join now to connect with experts and explore new ideas.
           </Text>
         </Column>
-        <Column offset={1} cols={{ xs: 12, md: 5 }}>
+        <Column offset={{ xs: 0, md: 1 }} cols={{ xs: 12, md: 5 }}>
           <Form
             display={Display.Flex}
             flexDirection={FlexDirection.Column}
             padding={{ x: 2, y: 2 }}
+            margin={{ top: 1 }}
             borderRadius={BorderRadius.Medium}
             backgroundColor={Color.White}
             ref={formRef}
