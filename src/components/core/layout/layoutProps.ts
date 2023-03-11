@@ -20,7 +20,6 @@ import {
   getLayoutStyles,
   Padding,
   Margin,
-  PaddingValue,
 } from './';
 import { BorderRadius, getSpacingStyles, toCssProp } from './utils';
 
@@ -44,10 +43,14 @@ export interface LayoutBreackpointCss {
   visibility?: StandardLonghandProperties['visibility'];
   margin?: Margin;
   padding?: Padding;
-  paddingTop?: PaddingValue;
-  paddingBot?: PaddingValue;
-  paddingLeft?: PaddingValue;
-  paddingRight?: PaddingValue;
+  paddingTop?: StandardLonghandProperties['paddingTop'];
+  paddingBot?: StandardLonghandProperties['paddingBottom'];
+  paddingLeft?: StandardLonghandProperties['paddingLeft'];
+  paddingRight?: StandardLonghandProperties['paddingRight'];
+  marginTop?: StandardLonghandProperties['marginTop'];
+  marginBot?: StandardLonghandProperties['marginBottom'];
+  marginLeft?: StandardLonghandProperties['marginLeft'];
+  marginRight?: StandardLonghandProperties['marginRight'];
 }
 
 export interface LayoutCss extends LayoutBreackpointCss {
@@ -91,6 +94,10 @@ const breackpointProps: PropClassNameMap<Required<LayoutBreackpointCss>> = {
   paddingBot: toCssProp('padding-bottom'),
   paddingLeft: toCssProp('padding-left'),
   paddingRight: toCssProp('padding-right'),
+  marginTop: toCssProp('margin-top'),
+  marginBot: toCssProp('margin-bottom'),
+  marginLeft: toCssProp('margin-left'),
+  marginRight: toCssProp('margin-right'),
 };
 
 export const mapProps: PropClassNameMap<Required<LayoutCss>> = {
