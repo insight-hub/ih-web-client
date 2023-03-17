@@ -13,24 +13,23 @@ export class CreateAcoountController {
 
   emailField: IProxyField = new ProxyField({
     getter: () => this.accountModel.email,
+    setter: (val) => (this.accountModel.email = val),
     validator: this.validateEmail,
   });
 
   usernameField: IProxyField = new ProxyField({
     getter: () => this.accountModel.username,
+    setter: (val) => (this.accountModel.username = val),
   });
 
   passwordField: IProxyField = new ProxyField({
     getter: () => this.accountModel.password,
+    setter: (val) => (this.accountModel.password = val),
   });
 
   private validateEmail(val: string) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!re.test(val)) return 'Invalid email';
-  }
-
-  updateModelValue(key: keyof Account, value: string) {
-    this.accountModel[key] = value;
   }
 
   onSubmit() { }

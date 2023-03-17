@@ -24,21 +24,28 @@ import {
 import { textType } from 'src/components/text';
 import { TYPES } from 'src/iocTypes';
 import { CreateAcoountController } from 'src/models/account.controller';
-import { Account } from 'src/models/account.model';
 
 export const Welcome = observer(() => {
   const formRef = useRef<HTMLFormElement>(null);
   const formController = useInjection<CreateAcoountController>(TYPES.CreateAccountController);
 
-  const handleUserInput = (e: SyntheticEvent) => {
+  const onUsernameChange = (e: SyntheticEvent) => {
     const target = e.target as HTMLInputElement;
+    formController.usernameField.setValue(target.value);
+  };
 
-    formController.updateModelValue(target.name as keyof Account, target.value);
+  const onEmailChange = (e: SyntheticEvent<HTMLInputElement>) => {
+    const target = e.target as HTMLInputElement;
+    formController.emailField.setValue(target.value);
+  };
+
+  const onPasswordChange = (e: SyntheticEvent) => {
+    const target = e.target as HTMLInputElement;
+    formController.passwordField.setValue(target.value);
   };
 
   const handleCreateAccount = (e: SyntheticEvent) => {
     e.preventDefault();
-
     formController.onSubmit();
   };
 
@@ -77,7 +84,7 @@ export const Welcome = observer(() => {
               <Label id="username" label="Username" />
               <Input
                 value={formController.usernameField.value}
-                onChange={handleUserInput}
+                onChange={onUsernameChange}
                 name="username"
               />
             </FormGroup>
@@ -85,7 +92,7 @@ export const Welcome = observer(() => {
               <Label id="email" label="Email" />
               <Input
                 value={formController.emailField.value}
-                onChange={handleUserInput}
+                onChange={onEmailChange}
                 name="email"
                 isValid={formController.emailField.isValid}
               />
@@ -94,8 +101,9 @@ export const Welcome = observer(() => {
               <Label id="password" label="Password" />
               <Input
                 value={formController.passwordField.value}
-                onChange={handleUserInput}
+                onChange={onPasswordChange}
                 name="password"
+                secure
               />
               <Hint>
                 Make sure it's at least 15 characters OR at least 8 characters including a number
