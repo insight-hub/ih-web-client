@@ -6,6 +6,7 @@ import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
 
 interface Props {
   disabled?: boolean;
+  secure?: boolean;
   name?: string;
   placeholder?: string;
   value?: string;
@@ -18,7 +19,9 @@ const ScInputWrapper = styled.div`
   position: relative;
 `;
 
-const ScInput = styled.input<StyledProps<{ $isValid: Props['isValid'] }>>`
+const ScInput = styled.input.attrs((props: Props) => ({
+  type: props.secure ? 'password' : 'text',
+})) <StyledProps<{ $isValid: Props['isValid']; secure: boolean }>>`
   width: 100%;
   padding: 0.5rem;
   border: 1px solid ${injectThemeValue('baseInputColor')};
@@ -45,10 +48,9 @@ const ScIconWrapper = styled.div`
 
 const Input: ForwardRefRenderFunction<HTMLInputElement, Props> = (props, ref) => {
   const isValid = props.isValid ?? true;
-  console.log(isValid);
   return (
     <ScInputWrapper>
-      <ScInput {...props} $isValid={isValid} ref={ref} />
+      <ScInput {...props} autoComplete="off" $isValid={isValid} ref={ref} />
       <ScIconWrapper>
         {isValid || <FontAwesomeIcon icon={faCircleExclamation} color={Color.Danger} />}
       </ScIconWrapper>
