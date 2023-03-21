@@ -1,18 +1,23 @@
 import React, { ReactNode } from 'react';
 
-import { injectThemeValue } from 'src/components/core';
-import { styled } from 'src/components/utils-styled-components';
+import { Color, injectThemeValue } from 'src/components/core';
+import { styled, StyledComponentProps, StyledProps } from 'src/components/utils-styled-components';
 
 interface Props {
   children?: ReactNode;
   isError?: boolean;
+  color?: Color;
 }
 
-const ScHint = styled.p`
+interface ScProps {
+  $color: Props['color'];
+}
+
+const ScHint = styled.p<StyledProps<ScProps>>`
   font-size: ${injectThemeValue('textSecondarySize')};
-  color: ${injectThemeValue('secondaryColor')};
+  color: ${(props) => props.color || Color.Secondary};
 `;
 
 export const Hint: React.FC<Props> = (props) => {
-  return <ScHint {...props} />;
+  return <ScHint $color={props.color} {...props} />;
 };

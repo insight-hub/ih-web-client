@@ -41,15 +41,20 @@ export const CreateAccountForm: React.FC<Props> = observer(({ form }) => {
     >
       <FormGroup>
         <Label id="username" label="Username" />
-        <Input value={form.usernameField.value} onChange={onUsernameChange} name="username" />
+        <Input
+          value={form.usernameField.value}
+          onChange={onUsernameChange}
+          error={form.usernameField.error}
+          name="username"
+        />
       </FormGroup>
       <FormGroup>
         <Label id="email" label="Email" />
         <Input
           value={form.emailField.value}
           onChange={onEmailChange}
+          error={form.emailField.error}
           name="email"
-          isValid={form.emailField.isValid}
         />
       </FormGroup>
       <FormGroup>
@@ -57,6 +62,7 @@ export const CreateAccountForm: React.FC<Props> = observer(({ form }) => {
         <Input
           value={form.passwordField.value}
           onChange={onPasswordChange}
+          error={form.passwordField.error}
           name="password"
           secure
         />
