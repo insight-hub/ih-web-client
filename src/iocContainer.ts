@@ -7,11 +7,9 @@ import { Account } from './models/account.model';
 
 export const container = new Container();
 
-container
-  .bind<Api>(TYPES.Api)
-  // TODO api config service
-  .toDynamicValue(() => new Api({ base: 'http://localhost:1234' }))
-  .inSingletonScope();
+const api = new Api({ base: 'http://localhost:8888' });
+
+container.bind<Api>(TYPES.Api).toConstantValue(api);
 container.bind<Account>(TYPES.Account).to(Account).inSingletonScope();
 container
   .bind<CreateAcoountController>(TYPES.CreateAccountController)

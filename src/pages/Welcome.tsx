@@ -46,7 +46,7 @@ export const Welcome = observer(() => {
 
   const handleCreateAccount = (e: SyntheticEvent) => {
     e.preventDefault();
-    formController.onSubmit();
+    formController.onCreateAccount();
   };
 
   return (

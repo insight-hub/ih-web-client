@@ -1,10 +1,10 @@
 import { makeHandler } from './makeHandler';
 
-export const createAccount = makeHandler(
-  'createAccount',
+export const join = makeHandler(
+  'join',
   (req: { username: string; email: string; password: string }) => ({
     method: 'POST',
-    path: '/account',
+    path: '/user/join',
     form: [
       {
         name: 'username',
@@ -14,5 +14,10 @@ export const createAccount = makeHandler(
       { name: 'password', value: req.password },
     ],
   }),
-  (data) => data,
+  (res: { user: UserCreated }) => res.user,
 );
+
+type UserCreated = {
+  username: string;
+  emai: string;
+};
