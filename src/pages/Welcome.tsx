@@ -1,65 +1,17 @@
-import React, { SyntheticEvent, useRef } from 'react';
+import React from 'react';
 import { observer } from 'mobx-react-lite';
 
-import {
-  AlignItems,
-  BorderRadius,
-  Button,
-  Color,
-  Column,
-  Display,
-  FlexDirection,
-  Input,
-  JustifyContent,
-  Label,
-  Layout,
-  Row,
-  Text,
-  Form,
-  Hint,
-  FormGroup,
-  theme,
-  useInjection,
-} from 'src/components';
+import { Color, Column, Row, Text, useInjection } from 'src/components';
 import { textType } from 'src/components/text';
 import { TYPES } from 'src/iocTypes';
 import { CreateAcoountController } from 'src/models/account.controller';
+import { CreateAccountForm } from 'src/components/CreateAccountForm';
 
 export const Welcome = observer(() => {
-  const formRef = useRef<HTMLFormElement>(null);
   const formController = useInjection<CreateAcoountController>(TYPES.CreateAccountController);
-
-  const onUsernameChange = (e: SyntheticEvent) => {
-    const target = e.target as HTMLInputElement;
-    formController.usernameField.setValue(target.value);
-  };
-
-  const onEmailChange = (e: SyntheticEvent<HTMLInputElement>) => {
-    const target = e.target as HTMLInputElement;
-    formController.emailField.setValue(target.value);
-  };
-
-  const onPasswordChange = (e: SyntheticEvent) => {
-    const target = e.target as HTMLInputElement;
-    formController.passwordField.setValue(target.value);
-  };
-
-  const handleCreateAccount = (e: SyntheticEvent) => {
-    e.preventDefault();
-    formController.onCreateAccount();
-  };
 
   return (
     <>
-      <Row height="3rem" alignItems={AlignItems.Center} justifyContent={JustifyContent.Between}>
-        <Text color="white" weigth="bold" size="x-large">
-          Logo
-        </Text>
-        <Layout>
-          <Button>Sing in</Button>
-          <Button variant="outline">Sing up</Button>
-        </Layout>
-      </Row>
       <Row padding={{ top: 5 }}>
         <Column cols={{ xs: 12, md: 6 }}>
           <Text type={textType.H1} weigth="bold" size="2.5rem" color="white">
@@ -71,62 +23,7 @@ export const Welcome = observer(() => {
           </Text>
         </Column>
         <Column offset={{ xs: 0, md: 1 }} cols={{ xs: 12, md: 5 }}>
-          <Form
-            display={Display.Flex}
-            flexDirection={FlexDirection.Column}
-            padding={{ x: 2, y: 2 }}
-            margin={{ top: 1 }}
-            borderRadius={BorderRadius.Medium}
-            backgroundColor={Color.White}
-            ref={formRef}
-          >
-            <FormGroup>
-              <Label id="username" label="Username" />
-              <Input
-                value={formController.usernameField.value}
-                onChange={onUsernameChange}
-                name="username"
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label id="email" label="Email" />
-              <Input
-                value={formController.emailField.value}
-                onChange={onEmailChange}
-                name="email"
-                isValid={formController.emailField.isValid}
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label id="password" label="Password" />
-              <Input
-                value={formController.passwordField.value}
-                onChange={onPasswordChange}
-                name="password"
-                secure
-              />
-              <Hint>
-                Make sure it's at least 15 characters OR at least 8 characters including a number
-                and a lowercase letter.
-              </Hint>
-            </FormGroup>
-            <Layout padding={{ top: 0.5 }}>
-              <Button onClick={handleCreateAccount} size="lg" variant="primary" fullWidth>
-                Create account
-              </Button>
-            </Layout>
-            <Text size={theme.textSecondarySize} color={Color.Secondary} margin={{ top: 1 }}>
-              By clicking «Create account», you agree to our{' '}
-              <a target="_blank" href="/">
-                Terms of Service
-              </a>{' '}
-              and{' '}
-              <a target="_blank" href="/">
-                Privacy Statement
-              </a>
-              . We’ll occasionally send you account related emails.
-            </Text>
-          </Form>
+          <CreateAccountForm form={formController} />
         </Column>
       </Row>
     </>

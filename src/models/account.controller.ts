@@ -1,20 +1,19 @@
 import { injectable, inject } from 'inversify';
 import { Api } from 'src/api/api';
 import { TYPES } from 'src/iocTypes';
-import { Account } from './account.model';
+import { CreateAccount } from './account.model';
 import { IProxyField, ProxyField } from './proxyField';
 
 @injectable()
 export class CreateAcoountController {
   constructor(
     @inject(TYPES.Api) private apiService: Api,
-    @inject(TYPES.Account) private accountModel: Account,
+    @inject(TYPES.Account) private accountModel: CreateAccount,
   ) { }
 
   emailField: IProxyField = new ProxyField({
     getter: () => this.accountModel.email,
     setter: (val) => (this.accountModel.email = val),
-    validator: this.validateEmail,
   });
 
   usernameField: IProxyField = new ProxyField({
