@@ -1,5 +1,4 @@
 import React from 'react';
-import { observer } from 'mobx-react-lite';
 
 import { Color, Column, Row, Text, useInjection } from 'src/components';
 import { textType } from 'src/components/text';
@@ -7,7 +6,7 @@ import { TYPES } from 'src/iocTypes';
 import { CreateAcoountController } from 'src/models/account.controller';
 import { CreateAccountForm } from 'src/components/CreateAccountForm';
 
-export const Welcome = observer(() => {
+export const Welcome = () => {
   const formController = useInjection<CreateAcoountController>(TYPES.CreateAccountController);
 
   return (
@@ -28,4 +27,4 @@ export const Welcome = observer(() => {
       </Row>
     </>
   );
-});
+};
