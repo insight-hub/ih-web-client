@@ -1,15 +1,17 @@
+import { inject, injectable } from 'inversify';
+import { TYPES } from 'src/iocTypes';
+import { AppConfigService } from 'src/models/config';
 import { ApiHandlerParams, ApiHandlerResponse, ApiHandlerTypes, getHandler } from './calls';
 import { Request } from './makeHandler';
 
-interface ApiConfig {
-  base: string;
-}
-
+@injectable()
 export class Api {
   private base: string;
 
-  constructor(config: ApiConfig) {
-    this.base = config.base;
+  constructor(@inject(TYPES.ConfigService) private configService: AppConfigService) {
+    const config = configService.getApplicationConfig();
+
+    this.base = config.baseApiUrl;
   }
 
   call<T extends ApiHandlerTypes>(
