@@ -23,6 +23,7 @@ jobs:
     env:
       LOGIN: ${{ secrets.DOCKER_LOGIN }}
       NAME: ${{ secrets.DOCKER_NAME }}
+      BASE_API_URL: ${{ secrets.DEV_API_URL }}
 
     steps:
       - name: Get release tag
@@ -30,10 +31,6 @@ jobs:
       - name: Login to docker
         run: echo ${{ secrets.DOCKER_PWD }} | docker login -u ${{ secrets.DOCKER_LOGIN }} --password-stdin
       - uses: actions/checkout@v3
-      - name: Create application env
-        run: |
-          echo {{ secrets.dev_api_url }} >> .env
-          cat .env
       - name: Build image
         run: docker build -t $LOGIN/$NAME:$RELEASE_SHA_TAG -f Dockerfile .
       - name: Push image
