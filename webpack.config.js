@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin').CleanWebpackPlugin;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { HotModuleReplacementPlugin } = require('webpack');
@@ -12,7 +13,16 @@ const APP_DIR = path.resolve(__dirname);
 const DEVSERVER_PORT = process.env.DEVSERVER_PORT || 8000;
 const PUBLIC_PATH = '/';
 
+require('dotenv').config();
+
 const plugins = [
+  new webpack.DefinePlugin({
+    'process.env': {
+      NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
+      BROWSER: JSON.stringify(true),
+    },
+    ENV: JSON.stringify(process.env),
+  }),
   new CleanWebpackPlugin({
     verbose: true,
     dry: true,
