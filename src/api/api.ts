@@ -1,17 +1,29 @@
 import { inject, injectable } from 'inversify';
+
 import { TYPES } from 'src/iocTypes';
 import { AppConfigService } from 'src/models/config';
 import { ApiHandlerParams, ApiHandlerResponse, ApiHandlerTypes, getHandler } from './calls';
+import { ApiError, isApiError } from './error';
 import { Request } from './makeHandler';
+
+type ProtoError = {
+  error: {
+    status: number;
+    message: string;
+    details?: string[];
+  };
+};
 
 @injectable()
 export class Api {
   private base: string;
+  private timeout: number;
 
   constructor(@inject(TYPES.ConfigService) private configService: AppConfigService) {
     const config = configService.getApplicationConfig();
 
     this.base = config.baseApiUrl;
+    this.timeout = config.apiTimeout ?? 30 * 1000;
   }
 
   call<T extends ApiHandlerTypes>(
@@ -51,13 +63,51 @@ export class Api {
       init.body = formData;
     }
 
-    return fetch(url, init).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
+    const abortController = new AbortController();
+    init.signal = abortController.signal;
 
-      // TODO handle api error & abortcontroller
-      return;
-    });
+    let timeoutHandle: ReturnType<typeof setTimeout> | undefined = setTimeout(
+      () => abortController.abort(),
+      this.timeout,
+    );
+
+    const cleanupTimeout = () => {
+      if (!timeoutHandle) return;
+      clearTimeout(timeoutHandle);
+      timeoutHandle = undefined;
+    };
+
+    return fetch(url, init)
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+
+        const err = new ApiError('NetworkError');
+        err.httpStatus = res.status;
+        err.httpStatusText = res.statusText;
+
+        return res.text().then((text: string) => {
+          try {
+            const data = JSON.parse(text) as ProtoError;
+            const error = data?.error || (data as ProtoError);
+            if (error) {
+              if (error.message) err.message = error.message;
+              if (error.details) err.details = error.details;
+            }
+          } catch (e) {
+            err.message = text;
+          }
+          throw err;
+        });
+      })
+      .catch((e: Error) => {
+        if (isApiError(e)) throw e;
+        const err = new ApiError('NetworkError', e.toString());
+        throw err;
+      })
+      .finally(() => {
+        cleanupTimeout();
+      });
   }
 }
