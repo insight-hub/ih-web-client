@@ -38,6 +38,7 @@ export interface LayoutNonCss {
 export interface LayoutBreackpointCss {
   height?: StandardLonghandProperties['height'];
   width?: StandardLonghandProperties['width'];
+  maxWidth?: StandardLonghandProperties['maxWidth'];
   minWidth?: StandardLonghandProperties['minWidth'];
   minHeigth?: StandardLonghandProperties['minHeight'];
   visibility?: StandardLonghandProperties['visibility'];
@@ -85,6 +86,7 @@ export interface LayoutProps
 const breackpointProps: PropClassNameMap<Required<LayoutBreackpointCss>> = {
   height: toCssProp('height'),
   width: toCssProp('width'),
+  maxWidth: toCssProp('max-width'),
   minWidth: toCssProp('min-width'),
   minHeigth: toCssProp('min-height'),
   margin: (_, v) => getSpacingStyles(v, 'margin'),

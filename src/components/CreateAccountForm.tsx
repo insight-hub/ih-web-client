@@ -1,5 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import React, { SyntheticEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { theme, Form, FormGroup, Label, Input, Hint, Layout, Text, Button } from 'src/components';
 import { Display, FlexDirection, BorderRadius, Color } from 'src/components/core';
@@ -10,6 +11,7 @@ interface Props {
 }
 
 export const CreateAccountForm: React.FC<Props> = observer(({ form }) => {
+  const navigate = useNavigate();
   const onUsernameChange = (e: SyntheticEvent) => {
     const target = e.target as HTMLInputElement;
     form.usernameField.setValue(target.value);
@@ -28,6 +30,10 @@ export const CreateAccountForm: React.FC<Props> = observer(({ form }) => {
   const handleCreateAccount = (e: SyntheticEvent) => {
     e.preventDefault();
     form.onCreateAccount();
+
+    if (location.pathname === '/') {
+      navigate('join');
+    }
   };
 
   return (
