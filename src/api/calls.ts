@@ -1,6 +1,6 @@
-import { join } from './account.codecs';
+import { join, login } from './user.codecs';
 
-const handlers = [join] as const;
+const handlers = [join, login] as const;
 
 const handlersMap: Map<ApiHandlerTypes, ApiHandlers> = new Map();
 for (let h of handlers) {

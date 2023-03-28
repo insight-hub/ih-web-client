@@ -14,7 +14,6 @@ export class CreateAcoountController {
   emailField: IProxyField = new ProxyField({
     getter: () => this.accountModel.email,
     setter: (val) => (this.accountModel.email = val),
-    validator: this.validateEmail,
   });
 
   usernameField: IProxyField = new ProxyField({

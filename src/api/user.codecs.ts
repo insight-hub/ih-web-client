@@ -4,7 +4,7 @@ export const join = makeHandler(
   'join',
   (req: { username: string; email: string; password: string }) => ({
     method: 'POST',
-    path: '/user/join',
+    path: '/join',
     form: [
       {
         name: 'username',
@@ -17,7 +17,29 @@ export const join = makeHandler(
   (res: { user: UserCreated }) => res.user,
 );
 
+export const login = makeHandler(
+  'login',
+  (req: { userame: string; password: string }) => ({
+    method: 'POST',
+    path: '/login',
+    form: [
+      { name: 'username', value: req.userame },
+      { name: 'password', value: req.password },
+    ],
+  }),
+  (data: { user: UserWithToken }) => data.user,
+);
+
+type UserWithToken = {
+  id: string;
+  username: string;
+  email: string;
+  token: string;
+  is_mail_confirmed: boolean;
+};
+
 type UserCreated = {
+  id: string;
   username: string;
   emai: string;
 };

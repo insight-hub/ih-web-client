@@ -3,6 +3,7 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import { Layout } from './layouts';
 import { Profile, Calendar, Welcome } from './pages';
+import { Join } from './pages/Join';
 
 export default createBrowserRouter([
   {
@@ -12,6 +13,10 @@ export default createBrowserRouter([
       {
         index: true,
         element: <Welcome />,
+      },
+      {
+        path: '/join',
+        element: <Join />,
       },
       {
         path: '/profile',
