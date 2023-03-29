@@ -5,9 +5,11 @@ import { TYPES } from 'src/iocTypes';
 import { CreateAccount } from './account.model';
 import { IProxyField, ProxyField } from './proxyField';
 
+// TODO refactor
 @injectable()
 export class CreateAcoountController {
   isHuman: boolean = false;
+  private _isPasswordSecure: boolean = true;
 
   constructor(
     @inject(TYPES.Api) private apiService: Api,
@@ -16,9 +18,15 @@ export class CreateAcoountController {
     makeAutoObservable(this);
   }
 
-  get isFullfilled() {
-    console.log(this.isHuman);
+  get isPasswordSecure() {
+    return this._isPasswordSecure;
+  }
 
+  toggleSecurePassword = () => {
+    this._isPasswordSecure = !this._isPasswordSecure;
+  };
+
+  get isFullfilled() {
     return (
       this.isHuman &&
       this.usernameField.isValid &&
@@ -30,21 +38,40 @@ export class CreateAcoountController {
   emailField: IProxyField = new ProxyField({
     getter: () => this.accountModel.email,
     setter: (val) => (this.accountModel.email = val),
+    validator: this.validateEmail,
   });
 
   usernameField: IProxyField = new ProxyField({
     getter: () => this.accountModel.username,
     setter: (val) => (this.accountModel.username = val),
+    validator: this.validateUsername,
   });
 
   passwordField: IProxyField = new ProxyField({
     getter: () => this.accountModel.password,
     setter: (val) => (this.accountModel.password = val),
+    validator: this.validatePassword,
   });
 
   private validateEmail(val: string) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!re.test(val)) return `Invalid email ${val}`;
+    return;
+  }
+
+  private validateUsername(val: string) {
+    const re = /[\W_]/g;
+    const result = Array.from(val.matchAll(re));
+    if (re.test(val)) return `Username should not contain special characters: ${result.join(', ')}`;
+    if (val.length < 4) return 'Username should has 4 characters at least';
+    return;
+  }
+
+  private validatePassword(val: string) {
+    const re = /[\W_]/g;
+    const result = Array.from(val.matchAll(re));
+    if (re.test(val)) return `Password should not contain special characters: ${result.join(', ')}`;
+    return;
   }
 
   onCreateAccount() {

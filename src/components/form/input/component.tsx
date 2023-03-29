@@ -1,4 +1,4 @@
-import React, { FormEventHandler, forwardRef, ForwardRefRenderFunction } from 'react';
+import React, { FormEventHandler, forwardRef, ForwardRefRenderFunction, ReactElement } from 'react';
 import { BorderRadius, Color, injectThemeValue } from 'src/components/core';
 import { styled, StyledProps } from 'src/components/utils-styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,6 +8,7 @@ import { Hint } from '../hint';
 interface Props {
   disabled?: boolean;
   secure?: boolean;
+  renderIcon?: ReactElement;
   name?: string;
   placeholder?: string;
   value?: string;
@@ -16,13 +17,17 @@ interface Props {
   isLoading?: boolean;
 }
 
+interface ScInputProps {
+  $isValid: boolean;
+}
+
 const ScInputWrapper = styled.div`
   position: relative;
 `;
 
 const ScInput = styled.input.attrs((props: Props) => ({
   type: props.secure ? 'password' : 'text',
-})) <StyledProps<{ $isValid: boolean; secure: boolean }>>`
+})) <StyledProps<ScInputProps>>`
   width: 100%;
   padding: 0.5rem;
   border: 1px solid ${injectThemeValue('baseInputColor')};
@@ -48,13 +53,16 @@ const ScIconWrapper = styled.div`
 `;
 
 const Input: ForwardRefRenderFunction<HTMLInputElement, Props> = (props, ref) => {
+  // TODO
+  const renderIcon = () => {
+    if (props.error) return <FontAwesomeIcon icon={faCircleExclamation} color={Color.Danger} />;
+    if (props.renderIcon) return props.renderIcon;
+  };
   return (
     <>
       <ScInputWrapper>
         <ScInput {...props} autoComplete="off" $isValid={!props.error} ref={ref} />
-        <ScIconWrapper>
-          {props.error && <FontAwesomeIcon icon={faCircleExclamation} color={Color.Danger} />}
-        </ScIconWrapper>
+        <ScIconWrapper>{renderIcon()}</ScIconWrapper>
       </ScInputWrapper>
       <Hint color={Color.Danger}>{props.error}</Hint>
     </>

@@ -6,6 +6,8 @@ import ReCAPTCHA from 'react-google-recaptcha';
 import { theme, Text, Form, FormGroup, Label, Input, Hint, Layout, Button } from 'src/components';
 import { Display, FlexDirection, BorderRadius, Color, Margin, Padding } from 'src/components/core';
 import { CreateAcoountController } from 'src/models/account.controller';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 interface Props {
   form: CreateAcoountController;
@@ -44,6 +46,16 @@ export const CreateAccountForm: React.FC<Props> = observer(({ form, captchaKey }
     form.humanVerify(token as string);
   };
 
+  const eyeIcon = form.isPasswordSecure ? (
+    <FontAwesomeIcon
+      style={styles.passwordIcon}
+      icon={faEyeSlash}
+      onClick={form.toggleSecurePassword}
+    />
+  ) : (
+    <FontAwesomeIcon style={styles.passwordIcon} icon={faEye} onClick={form.toggleSecurePassword} />
+  );
+
   return (
     <Form {...styles.form}>
       <Text size="x-large" weigth="500" color={Color.TextRegular}>
@@ -77,7 +89,8 @@ export const CreateAccountForm: React.FC<Props> = observer(({ form, captchaKey }
           onChange={onPasswordChange}
           error={form.passwordField.error}
           name="password"
-          secure
+          renderIcon={eyeIcon}
+          secure={form.isPasswordSecure}
         />
         <Hint>
           Make sure it's at least 15 characters OR at least 8 characters including a number and a
@@ -111,6 +124,7 @@ export const CreateAccountForm: React.FC<Props> = observer(({ form, captchaKey }
   );
 });
 
+// TODO typing
 const styles = {
   form: {
     display: Display.Flex,
@@ -124,5 +138,8 @@ const styles = {
     size: theme.textSecondarySize,
     color: Color.Secondary,
     padding: { bottom: 1, top: 0.5 } as Padding,
+  },
+  passwordIcon: {
+    cursor: 'pointer',
   },
 };
