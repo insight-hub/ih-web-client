@@ -34,6 +34,7 @@ jobs:
         run: |
           touch .env 
           echo BASE_API_URL=${{ secrets.DEV_API_URL }} >> .env
+          echo RECAPTCHA_PUB_KEY=${{ secrets.RECAPTCHA_PUB_KEY }} >> .env
           cat .env
       - name: Build image
         run: docker build -t $LOGIN/$NAME:$RELEASE_SHA_TAG -f Dockerfile .
