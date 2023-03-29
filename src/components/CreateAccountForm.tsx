@@ -40,7 +40,7 @@ export const CreateAccountForm: React.FC<Props> = observer(({ form, captchaKey }
 
   return (
     <Form {...styles.form}>
-      <Text size="x-large" weigth="500" color={Color.TextRegular} padding={{ bottom: 0.5 }}>
+      <Text size="x-large" weigth="500" color={Color.TextRegular}>
         Register to Share Your Expertise
       </Text>
       <Text {...styles.secondaryText}>
@@ -117,6 +117,6 @@ const styles = {
   secondaryText: {
     size: theme.textSecondarySize,
     color: Color.Secondary,
-    padding: { bottom: 1 } as Padding,
+    padding: { bottom: 1, top: 0.5 } as Padding,
   },
 };

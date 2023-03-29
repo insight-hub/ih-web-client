@@ -1,7 +1,7 @@
 import React, { forwardRef, ForwardRefRenderFunction, MouseEventHandler, ReactNode } from 'react';
 
 import { styled } from '../utils-styled-components';
-import { CoreInteractive, injectThemeValue } from 'src/components/core';
+import { Color, CoreInteractive, injectThemeValue } from 'src/components/core';
 
 type ButtonVariant = 'primary' | 'danger' | 'secondary' | 'outline' | 'outline--primary';
 type ButtonSize = 'sm' | 'md' | 'lg';
@@ -50,14 +50,14 @@ const ScButtonBase = styled(CoreInteractive) <ScProps>`
 `;
 
 const ScPouredButton = styled(ScButtonBase)`
-  background-color: ${injectThemeValue('primaryColor')};
+  background-color: ${(props) => (props.disabled ? Color.PrimaryDisabled : Color.Primary)};
 
   &:hover {
-    background-color: ${injectThemeValue('primaryColorHovered')};
+    background-color: ${(props) => (props.disabled ? Color.PrimaryDisabled : Color.PrimaryHovered)};
   }
 
   &:focus {
-    background-color: ${injectThemeValue('primaryColorHovered')};
+    background-color: ${(props) => (props.disabled ? Color.PrimaryDisabled : Color.PrimaryHovered)};
   }
 `;
 
