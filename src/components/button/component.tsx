@@ -1,7 +1,7 @@
 import React, { forwardRef, ForwardRefRenderFunction, MouseEventHandler, ReactNode } from 'react';
 
 import { styled } from '../utils-styled-components';
-import { Color, CoreInteractive, injectThemeValue } from 'src/components/core';
+import { Color, CoreInteractive } from 'src/components/core';
 
 type ButtonVariant = 'primary' | 'danger' | 'secondary' | 'outline' | 'outline--primary';
 type ButtonSize = 'sm' | 'md' | 'lg';
@@ -27,8 +27,8 @@ const ButtonInternalSize = {
 };
 
 const ButtonInternalFontSize = {
-  sm: '0.8rem',
-  md: '0.9rem',
+  sm: '0.9rem',
+  md: '1rem',
   lg: '1.1rem',
 };
 
@@ -45,7 +45,7 @@ const ScButtonBase = styled(CoreInteractive) <ScProps>`
   outline: none;
   cursor: pointer;
   font-size: ${(props) =>
-    props.$size ? ButtonInternalFontSize[props.$size] : ButtonInternalSize['md']};
+    props.$size ? ButtonInternalFontSize[props.$size] : ButtonInternalFontSize['md']};
   font-weight: ${(props) => props.$size === 'lg' && 'bold'};
 `;
 
