@@ -5,10 +5,12 @@ import { textType } from 'src/components/text';
 import { TYPES } from 'src/iocTypes';
 import { CreateAcoountController } from 'src/models/account.controller';
 import { CreateAccountForm } from 'src/components/CreateAccountForm';
+import { AppConfigService } from 'src/models/config';
 
 export const Welcome = () => {
   const formController = useInjection<CreateAcoountController>(TYPES.CreateAccountController);
-
+  const configService = useInjection<AppConfigService>(TYPES.ConfigService);
+  const captchaKey = configService.getApplicationConfig().recaptchaPubKey;
   return (
     <>
       <Row padding={{ top: 5 }}>
@@ -22,7 +24,7 @@ export const Welcome = () => {
           </Text>
         </Column>
         <Column offset={{ xs: 0, md: 1 }} cols={{ xs: 12, md: 5 }}>
-          <CreateAccountForm form={formController} />
+          <CreateAccountForm captchaKey={captchaKey} form={formController} />
         </Column>
       </Row>
     </>

@@ -11,6 +11,10 @@ export class CreateAcoountController {
     @inject(TYPES.Account) private accountModel: CreateAccount,
   ) { }
 
+  get isFullfilled() {
+    return false;
+  }
+
   emailField: IProxyField = new ProxyField({
     getter: () => this.accountModel.email,
     setter: (val) => (this.accountModel.email = val),

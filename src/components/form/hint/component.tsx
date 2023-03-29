@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 
 import { Color, injectThemeValue } from 'src/components/core';
-import { styled, StyledComponentProps, StyledProps } from 'src/components/utils-styled-components';
+import { styled, StyledProps } from 'src/components/utils-styled-components';
 
 interface Props {
   children?: ReactNode;

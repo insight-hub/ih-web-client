@@ -1,16 +1,19 @@
 import { observer } from 'mobx-react-lite';
-import React, { SyntheticEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { SyntheticEvent, useRef } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import ReCAPTCHA from 'react-google-recaptcha';
 
-import { theme, Form, FormGroup, Label, Input, Hint, Layout, Text, Button } from 'src/components';
-import { Display, FlexDirection, BorderRadius, Color } from 'src/components/core';
+import { theme, Text, Form, FormGroup, Label, Input, Hint, Layout, Button } from 'src/components';
+import { Display, FlexDirection, BorderRadius, Color, Margin, Padding } from 'src/components/core';
 import { CreateAcoountController } from 'src/models/account.controller';
 
 interface Props {
   form: CreateAcoountController;
+  captchaKey: string;
 }
 
-export const CreateAccountForm: React.FC<Props> = observer(({ form }) => {
+export const CreateAccountForm: React.FC<Props> = observer(({ form, captchaKey }) => {
+  const captchaRef = useRef<ReCAPTCHA>(null);
   const navigate = useNavigate();
   const onUsernameChange = (e: SyntheticEvent) => {
     const target = e.target as HTMLInputElement;
@@ -30,21 +33,19 @@ export const CreateAccountForm: React.FC<Props> = observer(({ form }) => {
   const handleCreateAccount = (e: SyntheticEvent) => {
     e.preventDefault();
     form.onCreateAccount();
-
     if (location.pathname === '/') {
       navigate('join');
     }
   };
 
   return (
-    <Form
-      display={Display.Flex}
-      flexDirection={FlexDirection.Column}
-      padding={{ x: 2, y: 2 }}
-      margin={{ top: 1 }}
-      borderRadius={BorderRadius.Medium}
-      backgroundColor={Color.White}
-    >
+    <Form {...styles.form}>
+      <Text size="x-large" weigth="500" color={Color.TextRegular} padding={{ bottom: 0.5 }}>
+        Register to Share Your Expertise
+      </Text>
+      <Text {...styles.secondaryText}>
+        Already have an account? <Link to="/singin">sing in</Link>
+      </Text>
       <FormGroup>
         <Label id="username" label="Username" />
         <Input
@@ -77,12 +78,19 @@ export const CreateAccountForm: React.FC<Props> = observer(({ form }) => {
           lowercase letter.
         </Hint>
       </FormGroup>
+      <ReCAPTCHA size="normal" sitekey={captchaKey} onError={() => { }} ref={captchaRef} />
       <Layout padding={{ top: 0.5 }}>
-        <Button onClick={handleCreateAccount} size="lg" variant="primary" fullWidth>
+        <Button
+          onClick={handleCreateAccount}
+          size="lg"
+          variant="primary"
+          disabled={!form.isFullfilled}
+          fullWidth
+        >
           Create account
         </Button>
       </Layout>
-      <Text size={theme.textSecondarySize} color={Color.Secondary} margin={{ top: 1 }}>
+      <Text {...styles.secondaryText}>
         By clicking «Create account», you agree to our{' '}
         <a target="_blank" href="/">
           Terms of Service
@@ -96,3 +104,19 @@ export const CreateAccountForm: React.FC<Props> = observer(({ form }) => {
     </Form>
   );
 });
+
+const styles = {
+  form: {
+    display: Display.Flex,
+    flexDirection: FlexDirection.Column,
+    padding: { x: 2, y: 2 } as Padding, // TODO ???
+    margin: { top: 1 } as Margin,
+    borderRadius: BorderRadius.Medium,
+    backgroundColor: Color.White,
+  },
+  secondaryText: {
+    size: theme.textSecondarySize,
+    color: Color.Secondary,
+    padding: { bottom: 1 } as Padding,
+  },
+};
