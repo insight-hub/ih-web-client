@@ -31,7 +31,10 @@ export class CreateAcoountController {
       this.isHuman &&
       this.usernameField.isValid &&
       this.emailField.isValid &&
-      this.passwordField.isValid
+      this.passwordField.isValid &&
+      this.usernameField.value &&
+      this.emailField.value &&
+      this.passwordField.value
     );
   }
 
@@ -55,33 +58,29 @@ export class CreateAcoountController {
 
   private validateEmail(val: string) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!re.test(val)) return `Invalid email ${val}`;
-    return;
+    if (val.length < 1) return;
+    if (!re.test(val)) return `Not valid email ${val}`;
   }
 
   private validateUsername(val: string) {
-    const re = /[\W_]/g;
-    const result = Array.from(val.matchAll(re));
-    if (re.test(val)) return `Username should not contain special characters: ${result.join(', ')}`;
+    const re = /^[A-Za-z0-9_]{4,29}$/g;
+    if (val.length < 1) return;
     if (val.length < 4) return 'Username should has 4 characters at least';
-    return;
+    if (!re.test(val)) return `Username should contain only latin letters, numbers and _`;
   }
 
   private validatePassword(val: string) {
-    const re = /[\W_]/g;
-    const result = Array.from(val.matchAll(re));
-    if (re.test(val)) return `Password should not contain special characters: ${result.join(', ')}`;
-    return;
+    const re = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/g;
+    if (val.length < 1) return;
+    if (!re.test(val)) return `Password 8 characters, at least one letter and one number`;
   }
 
   onCreateAccount() {
-    this.apiService
-      .call('join', {
-        username: this.accountModel.username,
-        email: this.accountModel.email,
-        password: this.accountModel.password,
-      })
-      .then((res) => { });
+    return this.apiService.call('join', {
+      username: this.accountModel.username,
+      email: this.accountModel.email,
+      password: this.accountModel.password,
+    });
   }
 
   humanVerify(token: string) {

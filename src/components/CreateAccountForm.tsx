@@ -34,11 +34,8 @@ export const CreateAccountForm: React.FC<Props> = observer(({ form, captchaKey }
 
   const handleCreateAccount = (e: SyntheticEvent) => {
     e.preventDefault();
-    // form.onCreateAccount();
-    //
-    // if (location.pathname === '/') {
-    //   navigate('join');
-    // }
+    captchaRef.current?.reset();
+    form.onCreateAccount().then(() => navigate('otp'));
   };
 
   const onCaptchaChange = () => {
@@ -62,7 +59,7 @@ export const CreateAccountForm: React.FC<Props> = observer(({ form, captchaKey }
         Register to Share Your Expertise
       </Text>
       <Text {...styles.secondaryText}>
-        Already have an account? <Link to="/singin">sing in</Link>
+        Already have an account? <Link to="/signin">sign in</Link>
       </Text>
       <FormGroup>
         <Label id="username" label="Username" />
@@ -92,10 +89,11 @@ export const CreateAccountForm: React.FC<Props> = observer(({ form, captchaKey }
           renderIcon={eyeIcon}
           secure={form.isPasswordSecure}
         />
-        <Hint>
-          Make sure it's at least 15 characters OR at least 8 characters including a number and a
-          lowercase letter.
-        </Hint>
+        {form.passwordField.isValid ?? (
+          <Hint>
+            Make sure it's at least 8 characters including a number and a lowercase letter.
+          </Hint>
+        )}
       </FormGroup>
       <ReCAPTCHA size="normal" sitekey={captchaKey} onChange={onCaptchaChange} ref={captchaRef} />
       <Layout padding={{ top: 0.5 }}>

@@ -55,8 +55,8 @@ const ScIconWrapper = styled.div`
 const Input: ForwardRefRenderFunction<HTMLInputElement, Props> = (props, ref) => {
   // TODO
   const renderIcon = () => {
-    if (props.error) return <FontAwesomeIcon icon={faCircleExclamation} color={Color.Danger} />;
     if (props.renderIcon) return props.renderIcon;
+    if (props.error) return <FontAwesomeIcon icon={faCircleExclamation} color={Color.Danger} />;
   };
   return (
     <>

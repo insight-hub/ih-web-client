@@ -4,6 +4,8 @@ import { createBrowserRouter } from 'react-router-dom';
 import { Layout } from './layouts';
 import { Profile, Calendar, Welcome } from './pages';
 import { Join } from './pages/Join';
+import { OneTimePassword } from './pages/OneTimePassword';
+import { SingIn } from './pages/SingIn';
 
 export default createBrowserRouter([
   {
@@ -17,6 +19,14 @@ export default createBrowserRouter([
       {
         path: '/join',
         element: <Join />,
+      },
+      {
+        path: '/otp',
+        element: <OneTimePassword />,
+      },
+      {
+        path: '/signin',
+        element: <SingIn />,
       },
       {
         path: '/profile',
