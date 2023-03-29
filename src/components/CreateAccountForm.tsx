@@ -32,10 +32,16 @@ export const CreateAccountForm: React.FC<Props> = observer(({ form, captchaKey }
 
   const handleCreateAccount = (e: SyntheticEvent) => {
     e.preventDefault();
-    form.onCreateAccount();
-    if (location.pathname === '/') {
-      navigate('join');
-    }
+    // form.onCreateAccount();
+    //
+    // if (location.pathname === '/') {
+    //   navigate('join');
+    // }
+  };
+
+  const onCaptchaChange = () => {
+    const token = captchaRef.current?.getValue();
+    form.humanVerify(token as string);
   };
 
   return (
@@ -78,7 +84,7 @@ export const CreateAccountForm: React.FC<Props> = observer(({ form, captchaKey }
           lowercase letter.
         </Hint>
       </FormGroup>
-      <ReCAPTCHA size="normal" sitekey={captchaKey} onError={() => { }} ref={captchaRef} />
+      <ReCAPTCHA size="normal" sitekey={captchaKey} onChange={onCaptchaChange} ref={captchaRef} />
       <Layout padding={{ top: 0.5 }}>
         <Button
           onClick={handleCreateAccount}

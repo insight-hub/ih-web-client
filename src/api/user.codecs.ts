@@ -30,6 +30,16 @@ export const login = makeHandler(
   (data: { user: UserWithToken }) => data.user,
 );
 
+export const humanVerify = makeHandler(
+  'humanVerify',
+  (req: { token: string }) => ({
+    method: 'POST',
+    path: '/recaptcha',
+    form: [{ name: 'token', value: req.token }],
+  }),
+  (data: { is_human: boolean }) => data.is_human,
+);
+
 type UserWithToken = {
   id: string;
   username: string;

@@ -1,4 +1,5 @@
 import { injectable, inject } from 'inversify';
+import { makeAutoObservable } from 'mobx';
 import { Api } from 'src/api/api';
 import { TYPES } from 'src/iocTypes';
 import { CreateAccount } from './account.model';
@@ -6,13 +7,24 @@ import { IProxyField, ProxyField } from './proxyField';
 
 @injectable()
 export class CreateAcoountController {
+  isHuman: boolean = false;
+
   constructor(
     @inject(TYPES.Api) private apiService: Api,
     @inject(TYPES.Account) private accountModel: CreateAccount,
-  ) { }
+  ) {
+    makeAutoObservable(this);
+  }
 
   get isFullfilled() {
-    return false;
+    console.log(this.isHuman);
+
+    return (
+      this.isHuman &&
+      this.usernameField.isValid &&
+      this.emailField.isValid &&
+      this.passwordField.isValid
+    );
   }
 
   emailField: IProxyField = new ProxyField({
@@ -43,5 +55,12 @@ export class CreateAcoountController {
         password: this.accountModel.password,
       })
       .then((res) => { });
+  }
+
+  humanVerify(token: string) {
+    this.apiService.call('humanVerify', { token }).then((isHuman) => {
+      console.log(isHuman);
+      this.isHuman = isHuman;
+    });
   }
 }

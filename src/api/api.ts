@@ -40,7 +40,7 @@ export class Api {
         // aditional headers like device signature
         ...request.headers,
       },
-    });
+    }).then((data) => h.decode(data));
   }
 
   private makeRequestInternal(params: Request) {
