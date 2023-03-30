@@ -29,7 +29,7 @@ export default createBrowserRouter([
         element: <SingIn />,
       },
       {
-        path: '/profile',
+        path: '/:username',
         element: <Profile />,
       },
       {
