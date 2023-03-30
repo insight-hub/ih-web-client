@@ -40,6 +40,19 @@ export const humanVerify = makeHandler(
   (data: { is_human: boolean }) => data.is_human,
 );
 
+export const verifyOTP = makeHandler(
+  'verifyOTP',
+  (req: { otp: string; username: string }) => ({
+    method: 'POST',
+    path: '/otp',
+    form: [
+      { name: 'username', value: req.username },
+      { name: 'otp', value: req.otp },
+    ],
+  }),
+  (res: { user: UserWithToken }) => res.user,
+);
+
 type UserWithToken = {
   id: string;
   username: string;

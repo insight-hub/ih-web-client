@@ -1,7 +1,6 @@
 import React from 'react';
-import { useInjection } from 'src/components';
+import { Column, Row, useInjection } from 'src/components';
 
-import { Layout } from 'src/components/core';
 import { CreateAccountForm } from 'src/components/CreateAccountForm';
 import { TYPES } from 'src/iocTypes';
 import { CreateAcoountController } from 'src/models/account.controller';
@@ -12,8 +11,10 @@ export const Join = () => {
   const configService = useInjection<AppConfigService>(TYPES.ConfigService);
   const captchaKey = configService.getApplicationConfig().recaptchaPubKey;
   return (
-    <Layout maxWidth="33vw" margin={{ y: 5, x: 'auto' }}>
-      <CreateAccountForm form={formController} captchaKey={captchaKey} />
-    </Layout>
+    <Row>
+      <Column offset={{ xs: 0, sm: 2, md: 4 }} cols={{ xs: 12, sm: 8, md: 4 }}>
+        <CreateAccountForm form={formController} captchaKey={captchaKey} />
+      </Column>
+    </Row>
   );
 };

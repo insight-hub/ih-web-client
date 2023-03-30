@@ -25,7 +25,7 @@ export const Label: React.FC<Props> = (props) => {
   return (
     <ScLabel htmlFor={props.id} {...props}>
       {props.label}
-      <ScRequiredStar />
+      {props.required && <ScRequiredStar />}
     </ScLabel>
   );
 };

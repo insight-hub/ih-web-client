@@ -62,7 +62,7 @@ export const CreateAccountForm: React.FC<Props> = observer(({ form, captchaKey }
         Already have an account? <Link to="/signin">sign in</Link>
       </Text>
       <FormGroup>
-        <Label id="username" label="Username" />
+        <Label id="username" label="Username" required />
         <Input
           value={form.usernameField.value}
           onChange={onUsernameChange}
@@ -71,7 +71,7 @@ export const CreateAccountForm: React.FC<Props> = observer(({ form, captchaKey }
         />
       </FormGroup>
       <FormGroup>
-        <Label id="email" label="Email" />
+        <Label id="email" label="Email" required />
         <Input
           value={form.emailField.value}
           onChange={onEmailChange}
@@ -80,7 +80,7 @@ export const CreateAccountForm: React.FC<Props> = observer(({ form, captchaKey }
         />
       </FormGroup>
       <FormGroup>
-        <Label id="password" label="Password" />
+        <Label id="password" label="Password" required />
         <Input
           value={form.passwordField.value}
           onChange={onPasswordChange}

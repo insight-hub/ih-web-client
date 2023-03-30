@@ -1,6 +1,6 @@
-import { join, login, humanVerify } from './user.codecs';
+import { join, login, humanVerify, verifyOTP } from './user.codecs';
 
-const handlers = [join, login, humanVerify] as const;
+const handlers = [join, login, humanVerify, verifyOTP] as const;
 
 const handlersMap: Map<ApiHandlerTypes, ApiHandlers> = new Map();
 for (let h of handlers) {

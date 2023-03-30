@@ -2,15 +2,17 @@ import { Container } from 'inversify';
 
 import { Api } from './api/api';
 import { TYPES } from './iocTypes';
-import { CreateAcoountController } from './models/account.controller';
-import { CreateAccount } from './models/account.model';
+import { CreateAcoountController } from './models/createUser.controller';
+import { User } from './models/user.model';
 import { ConfigService } from './models/config';
+import { OTPController } from './models/otp.controller';
 
 export const container = new Container();
 
 container.bind<ConfigService>(TYPES.ConfigService).to(ConfigService).inSingletonScope();
 container.bind<Api>(TYPES.Api).to(Api).inSingletonScope();
-container.bind<CreateAccount>(TYPES.Account).to(CreateAccount).inSingletonScope();
+container.bind<User>(TYPES.Account).to(User).inSingletonScope();
+container.bind<OTPController>(TYPES.OTPController).to(OTPController).inSingletonScope();
 container
   .bind<CreateAcoountController>(TYPES.CreateAccountController)
   .to(CreateAcoountController)

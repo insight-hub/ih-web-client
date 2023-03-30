@@ -10,7 +10,7 @@ type ProtoError = {
   error: {
     status: number;
     message: string;
-    details?: string[];
+    detail?: string[];
   };
 };
 
@@ -93,7 +93,7 @@ export class Api {
             const error = data?.error || (data as ProtoError);
             if (error) {
               if (error.message) err.message = error.message;
-              if (error.details) err.details = error.details;
+              if (error.detail) err.details = error.detail;
             }
           } catch (e) {
             err.message = text;

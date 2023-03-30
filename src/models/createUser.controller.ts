@@ -1,8 +1,9 @@
 import { injectable, inject } from 'inversify';
 import { makeAutoObservable } from 'mobx';
+
 import { Api } from 'src/api/api';
 import { TYPES } from 'src/iocTypes';
-import { CreateAccount } from './account.model';
+import { User } from './user.model';
 import { IProxyField, ProxyField } from './proxyField';
 
 // TODO refactor
@@ -13,7 +14,7 @@ export class CreateAcoountController {
 
   constructor(
     @inject(TYPES.Api) private apiService: Api,
-    @inject(TYPES.Account) private accountModel: CreateAccount,
+    @inject(TYPES.Account) private accountModel: User,
   ) {
     makeAutoObservable(this);
   }
@@ -63,7 +64,7 @@ export class CreateAcoountController {
   }
 
   private validateUsername(val: string) {
-    const re = /^[A-Za-z0-9_]{4,29}$/g;
+    const re = /^[A-Za-z0-9_]{4,30}$/g;
     if (val.length < 1) return;
     if (val.length < 4) return 'Username should has 4 characters at least';
     if (!re.test(val)) return `Username should contain only latin letters, numbers and _`;
@@ -85,7 +86,6 @@ export class CreateAcoountController {
 
   humanVerify(token: string) {
     this.apiService.call('humanVerify', { token }).then((isHuman) => {
-      console.log(isHuman);
       this.isHuman = isHuman;
     });
   }
