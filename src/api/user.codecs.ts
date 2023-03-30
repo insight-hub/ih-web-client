@@ -19,11 +19,11 @@ export const join = makeHandler(
 
 export const login = makeHandler(
   'login',
-  (req: { userame: string; password: string }) => ({
+  (req: { username: string; password: string }) => ({
     method: 'POST',
     path: '/login',
     form: [
-      { name: 'username', value: req.userame },
+      { name: 'username', value: req.username },
       { name: 'password', value: req.password },
     ],
   }),

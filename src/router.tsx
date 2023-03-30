@@ -5,7 +5,7 @@ import { Layout } from './layouts';
 import { Profile, Calendar, Welcome } from './pages';
 import { Join } from './pages/Join';
 import { OneTimePassword } from './pages/OneTimePassword';
-import { SingIn } from './pages/SingIn';
+import { SignIn } from './pages/SignIn';
 
 export default createBrowserRouter([
   {
@@ -26,7 +26,7 @@ export default createBrowserRouter([
       },
       {
         path: '/signin',
-        element: <SingIn />,
+        element: <SignIn />,
       },
       {
         path: '/:username',

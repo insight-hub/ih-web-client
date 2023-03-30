@@ -7,6 +7,7 @@ import { IStorage, User } from './models/user';
 import { ConfigService } from './models/config';
 import { OTPController } from './models/otp.controller';
 import { Auth } from './models/auth';
+import { LoginController } from './models/login.controller';
 
 // TODO
 const localStorage = window.localStorage;
@@ -19,6 +20,7 @@ container.bind<Api>(TYPES.Api).to(Api).inSingletonScope();
 container.bind<User>(TYPES.User).to(User).inSingletonScope();
 container.bind<OTPController>(TYPES.OTPController).to(OTPController).inSingletonScope();
 container.bind<IStorage>(TYPES.Storage).toConstantValue(localStorage);
+container.bind<LoginController>(TYPES.LoginController).to(LoginController).inSingletonScope();
 container
   .bind<CreateAcoountController>(TYPES.CreateAccountController)
   .to(CreateAcoountController)
