@@ -3,8 +3,8 @@ import { makeAutoObservable } from 'mobx';
 
 import { Api } from 'src/api/api';
 import { TYPES } from 'src/iocTypes';
-import { User } from './user.model';
 import { IProxyField, ProxyField } from './proxyField';
+import { Auth } from './auth';
 
 // TODO refactor
 @injectable()
@@ -14,7 +14,7 @@ export class CreateAcoountController {
 
   constructor(
     @inject(TYPES.Api) private apiService: Api,
-    @inject(TYPES.Account) private accountModel: User,
+    @inject(TYPES.AuthModel) private authModel: Auth,
   ) {
     makeAutoObservable(this);
   }
@@ -40,20 +40,20 @@ export class CreateAcoountController {
   }
 
   emailField: IProxyField = new ProxyField({
-    getter: () => this.accountModel.email,
-    setter: (val) => (this.accountModel.email = val),
+    getter: () => this.authModel.email,
+    setter: (val) => (this.authModel.email = val),
     validator: this.validateEmail,
   });
 
   usernameField: IProxyField = new ProxyField({
-    getter: () => this.accountModel.username,
-    setter: (val) => (this.accountModel.username = val),
+    getter: () => this.authModel.username,
+    setter: (val) => (this.authModel.username = val),
     validator: this.validateUsername,
   });
 
   passwordField: IProxyField = new ProxyField({
-    getter: () => this.accountModel.password,
-    setter: (val) => (this.accountModel.password = val),
+    getter: () => this.authModel.password,
+    setter: (val) => (this.authModel.password = val),
     validator: this.validatePassword,
   });
 
@@ -78,9 +78,9 @@ export class CreateAcoountController {
 
   onCreateAccount() {
     return this.apiService.call('join', {
-      username: this.accountModel.username,
-      email: this.accountModel.email,
-      password: this.accountModel.password,
+      username: this.authModel.username,
+      email: this.authModel.email,
+      password: this.authModel.password,
     });
   }
 

@@ -53,12 +53,14 @@ export const verifyOTP = makeHandler(
   (res: { user: UserWithToken }) => res.user,
 );
 
-type UserWithToken = {
+export type UserWithToken = {
   id: string;
   username: string;
   email: string;
   token: string;
   is_mail_confirmed: boolean;
+  created_at: string;
+  updated_at: string;
 };
 
 type UserCreated = {

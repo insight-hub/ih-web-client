@@ -5,7 +5,7 @@ import ReCAPTCHA from 'react-google-recaptcha';
 
 import { theme, Text, Form, FormGroup, Label, Input, Hint, Layout, Button } from 'src/components';
 import { Display, FlexDirection, BorderRadius, Color, Margin, Padding } from 'src/components/core';
-import { CreateAcoountController } from 'src/models/account.controller';
+import { CreateAcoountController } from 'src/models/createUser.controller';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 

@@ -4,4 +4,5 @@ export const TYPES = {
   CreateAccountController: Symbol.for('CreateAccountController'),
   ConfigService: Symbol.for('ConfigService'),
   OTPController: Symbol.for('OTPController'),
+  AuthModel: Symbol.for('AuthModel'),
 };
