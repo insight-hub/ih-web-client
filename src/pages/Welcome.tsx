@@ -3,7 +3,7 @@ import React from 'react';
 import { Color, Column, Row, Text, useInjection } from 'src/components';
 import { textType } from 'src/components/text';
 import { TYPES } from 'src/iocTypes';
-import { CreateAcoountController } from 'src/models/account.controller';
+import { CreateAcoountController } from 'src/models/createUser.controller';
 import { CreateAccountForm } from 'src/components/CreateAccountForm';
 import { AppConfigService } from 'src/models/config';
 

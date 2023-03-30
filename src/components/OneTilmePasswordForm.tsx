@@ -33,7 +33,7 @@ export const OneTimePasswordFrom: React.FC<Props> = observer(({ controller }) =>
       </Text>
       <Input value={controller.oneTimePasswordField.value} onChange={onOTPChange} />
       <Text size="small" padding={{ top: 1, bottom: 1 }}>
-        Please ensure to check your spam folder if you do not see the email in your inbox.
+        Please ensure to check your spam folder if&#160;you do not see the email in&#160;your inbox.
       </Text>
       <Button onClick={onOTPSumbit} disabled={controller.submitDisabled} variant="primary">
         Confirm

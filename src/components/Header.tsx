@@ -12,10 +12,10 @@ export const Header: React.FC = () => {
       </Link>
       <Layout>
         <Link to="/signin">
-          <Button>Sing in</Button>
+          <Button>Sign in</Button>
         </Link>
         <Link to="/join">
-          <Button variant="outline">Sing up</Button>
+          <Button variant="outline">Register</Button>
         </Link>
       </Layout>
     </Row>

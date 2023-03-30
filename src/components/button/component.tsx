@@ -23,7 +23,7 @@ interface ScProps {
 const ButtonInternalSize = {
   sm: '5px 20px',
   lg: '15px 20px',
-  md: '7px 20px',
+  md: '7px 30px',
 };
 
 const ButtonInternalFontSize = {
@@ -37,7 +37,7 @@ const ScButtonBase = styled(CoreInteractive) <ScProps>`
   display: inline-block;
   width: ${(props) => (props.$fullWidth ? '100%' : '')};
   border-radius: 5px;
-  padding: ${(props) => (props.$size ? ButtonInternalSize[props.$size] : '5px 20px')};
+  padding: ${(props) => (props.$size ? ButtonInternalSize[props.$size] : ButtonInternalSize.md)};
   border: none;
   background-color: transparent;
   // contrast themed color
@@ -45,7 +45,7 @@ const ScButtonBase = styled(CoreInteractive) <ScProps>`
   outline: none;
   cursor: pointer;
   font-size: ${(props) =>
-    props.$size ? ButtonInternalFontSize[props.$size] : ButtonInternalFontSize['md']};
+    props.$size ? ButtonInternalFontSize[props.$size] : ButtonInternalFontSize.md};
   font-weight: ${(props) => props.$size === 'lg' && 'bold'};
 `;
 
