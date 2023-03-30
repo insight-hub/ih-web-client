@@ -2,11 +2,21 @@ import React from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 
 import { Container } from 'src/components/grid';
-import { AlignItems, Display, JustifyContent, Layout as LayoutComponent, Text } from 'src/components';
+import {
+  AlignItems,
+  Display,
+  JustifyContent,
+  Layout as LayoutComponent,
+  Text,
+  useInjection,
+} from 'src/components';
 import { Header } from 'src/components/Header';
+import { User } from 'src/models';
+import { TYPES } from 'src/iocTypes';
 
 export const Layout: React.FC = () => {
   const location = useLocation();
+  const userModel = useInjection<User>(TYPES.User);
   const shouldHideHeader = ['/join', '/signin', '/otp'].some((path) => path === location.pathname);
   const shouldHileLogo = location.pathname === '/otp';
 
@@ -28,7 +38,7 @@ export const Layout: React.FC = () => {
           )}
         </LayoutComponent>
       ) : (
-        <Header />
+        <Header isAuth={userModel.isAuth} />
       )}
       <Outlet />
     </Container>

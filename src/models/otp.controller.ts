@@ -14,7 +14,7 @@ export class OTPController {
 
   constructor(
     @inject(TYPES.Api) private apiService: Api,
-    @inject(TYPES.Account) private userModel: User,
+    @inject(TYPES.User) private userModel: User,
     @inject(TYPES.AuthModel) private authModel: Auth,
   ) {
     makeAutoObservable(this);
