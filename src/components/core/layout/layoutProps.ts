@@ -68,7 +68,7 @@ export interface LayoutCss extends LayoutBreackpointCss {
   cursor?: Cursor;
   overflow?: Overflow;
   zIndex?: ZIndex;
-  background?: Background;
+  background?: Background | Color;
   breackpointXs?: LayoutBreackpointCss;
   breackpointSm?: LayoutBreackpointCss;
   breackpointMd?: LayoutBreackpointCss;
