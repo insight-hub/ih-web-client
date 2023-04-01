@@ -1,7 +1,5 @@
 import { observer } from 'mobx-react-lite';
 import React, { SyntheticEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { User } from 'src/models';
 
 import { OTPController } from 'src/models/otp.controller';
 import { Button } from './button';
@@ -14,12 +12,9 @@ interface Props {
 }
 
 export const OneTimePasswordFrom: React.FC<Props> = observer(({ controller }) => {
-  const navigate = useNavigate();
   const onOTPSumbit = (e: SyntheticEvent) => {
     e.preventDefault();
-    controller.verifyOTP().then((user: User) => {
-      if (user) navigate(`/${user.username}`, { replace: true });
-    });
+    controller.verifyOTP();
   };
 
   const onOTPChange = (e: SyntheticEvent) => {

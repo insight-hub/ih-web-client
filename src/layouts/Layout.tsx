@@ -7,8 +7,9 @@ import { TYPES } from 'src/iocTypes';
 import { DevBadge } from 'src/components/DevBadge';
 import { AuthorizedLayout } from './AuthorizedLayout';
 import { UnauthorizedLayout } from './UnauthorizedLayout';
+import { observer } from 'mobx-react-lite';
 
-export const Layout: React.FC = () => {
+export const Layout: React.FC = observer(() => {
   const userModel = useInjection<User>(TYPES.User);
 
   return (
@@ -17,4 +18,4 @@ export const Layout: React.FC = () => {
       <Container>{userModel.isAuth ? <AuthorizedLayout /> : <UnauthorizedLayout />}</Container>
     </>
   );
-};
+});

@@ -10,10 +10,11 @@ const ENTRY_POINT = path.resolve(__dirname, 'src/index.tsx');
 const OUTPUT_DIR = path.resolve(__dirname, 'dist');
 const APP_DIR = path.resolve(__dirname);
 
-const DEVSERVER_PORT = process.env.DEVSERVER_PORT || 8000;
 const PUBLIC_PATH = '/';
 
 require('dotenv').config();
+
+const DEVSERVER_PORT = process.env.DEVSERVER_PORT || 8000;
 
 const plugins = [
   new webpack.DefinePlugin({

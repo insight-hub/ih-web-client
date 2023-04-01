@@ -21,7 +21,7 @@ export class LoginController {
   }
 
   get isFullfilled() {
-    return false;
+    return this.isHuman && this.username.length > 0 && this.password.length > 0;
   }
 
   get isPasswordSecure() {

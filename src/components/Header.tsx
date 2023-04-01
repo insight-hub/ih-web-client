@@ -1,3 +1,4 @@
+import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -5,11 +6,7 @@ import { Row, Layout, Text, Button } from 'src/components';
 import { AlignItems, JustifyContent } from 'src/components/core';
 import { UserAvatar } from './avatar/UserAvatar';
 
-interface Props {
-  isAuth: boolean;
-}
-
-export const AuthorizedHeader = () => {
+export const AuthorizedHeader = observer(() => {
   return (
     <Row height="3rem" alignItems={AlignItems.Center} justifyContent={JustifyContent.Between}>
       <Link to="/">
@@ -20,9 +17,9 @@ export const AuthorizedHeader = () => {
       </Layout>
     </Row>
   );
-};
+});
 
-export const UnauthorizedHeader = () => {
+export const UnauthorizedHeader = observer(() => {
   return (
     <Row height="3rem" alignItems={AlignItems.Center} justifyContent={JustifyContent.Between}>
       <Link to="/">
@@ -38,7 +35,7 @@ export const UnauthorizedHeader = () => {
       </Layout>
     </Row>
   );
-};
+});
 
 const styles = {
   logo: {
