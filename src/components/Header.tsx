@@ -22,7 +22,7 @@ export const AuthorizedHeader = () => {
   );
 };
 
-export const WelcomeHeader = () => {
+export const UnauthorizedHeader = () => {
   return (
     <Row height="3rem" alignItems={AlignItems.Center} justifyContent={JustifyContent.Between}>
       <Link to="/">
@@ -38,10 +38,6 @@ export const WelcomeHeader = () => {
       </Layout>
     </Row>
   );
-};
-
-export const Header: React.FC<Props> = (props) => {
-  return props.isAuth ? <AuthorizedHeader /> : <WelcomeHeader />;
 };
 
 const styles = {
