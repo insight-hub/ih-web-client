@@ -41,6 +41,10 @@ export class User {
     this._token = newToken;
   }
 
+  logout() {
+    this.token = '';
+  }
+
   fromJson(user: api.UserWithToken) {
     this.username = user.username;
     this.email = user.email;

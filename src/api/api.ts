@@ -18,6 +18,7 @@ type ProtoError = {
 export class Api {
   private base: string;
   private timeout: number;
+  private token?: string;
 
   constructor(@inject(TYPES.ConfigService) private configService: AppConfigService) {
     const config = configService.getApplicationConfig();
@@ -34,13 +35,23 @@ export class Api {
     const h = getHandler(type);
     const request = h.prepare(params);
 
-    return this.makeRequestInternal({
+    const result = this.makeRequestInternal({
       ...request,
       headers: {
         // aditional headers like device signature
         ...request.headers,
       },
     }).then((data) => h.decode(data));
+
+    if (this.configService.onApiError) {
+      result.catch((e) => this.configService.onApiError(e));
+    }
+
+    return result;
+  }
+
+  setToken(token: string) {
+    this.token = token;
   }
 
   private makeRequestInternal(params: Request) {
@@ -76,6 +87,10 @@ export class Api {
       clearTimeout(timeoutHandle);
       timeoutHandle = undefined;
     };
+
+    if (this.token) {
+      headers.Authorization = `Bearer ${this.token}`;
+    }
 
     return fetch(url, init)
       .then((res) => {
