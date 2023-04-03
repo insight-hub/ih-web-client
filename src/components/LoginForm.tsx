@@ -35,7 +35,9 @@ export const LoginForm: React.FC<Props> = observer(({ form, captchaKey }) => {
 
   const handleLogin = (e: SyntheticEvent) => {
     e.preventDefault();
-    form.onLogin();
+    form.onLogin().then((user) => {
+      if (user) navigate('/');
+    });
   };
 
   const eyeIcon = form.isPasswordSecure ? (

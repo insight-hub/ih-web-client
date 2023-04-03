@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 import './DropdownMenu.scss';
 
 // TODO refactor
@@ -28,11 +27,7 @@ export const DropdownMenu = () => {
           <li className="menu_list__item">Help</li>
         </Link>
       </ul>
-      <ul className="menu_section menu_section--non-border">
-        <Link to="/signout">
-          <li className="menu_list__item">Sign out</li>
-        </Link>
-      </ul>
+      <ul className="menu_section menu_section--non-border"></ul>
     </div>
   );
 };
