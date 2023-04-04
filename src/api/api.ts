@@ -7,10 +7,10 @@ import { ApiError, isApiError } from './error';
 import { Request } from './makeHandler';
 
 type ProtoError = {
-  error: {
+  detail: {
     status: number;
     message: string;
-    detail?: string[];
+    details?: Record<string, string>;
   };
 };
 
@@ -105,10 +105,10 @@ export class Api {
         return res.text().then((text: string) => {
           try {
             const data = JSON.parse(text) as ProtoError;
-            const error = data?.error || (data as ProtoError);
+            const error = data?.detail || (data as ProtoError);
             if (error) {
               if (error.message) err.message = error.message;
-              if (error.detail) err.details = error.detail;
+              if (error.details) err.details = error.details;
             }
           } catch (e) {
             err.message = text;

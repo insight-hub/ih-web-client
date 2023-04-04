@@ -5,6 +5,7 @@ import { Api } from 'src/api/api';
 import { TYPES } from 'src/iocTypes';
 import { IProxyField, ProxyField } from './proxyField';
 import { Auth } from './auth';
+import { ApiError } from 'src/api/error';
 
 // TODO refactor
 @injectable()
@@ -77,11 +78,23 @@ export class CreateAcoountController {
   }
 
   onCreateAccount() {
-    return this.apiService.call('join', {
-      username: this.authModel.username,
-      email: this.authModel.email,
-      password: this.authModel.password,
-    });
+    this.isHuman = false;
+    return this.apiService
+      .call('join', {
+        username: this.authModel.username,
+        email: this.authModel.email,
+        password: this.authModel.password,
+      })
+      .catch((err: ApiError) => {
+        const { details } = err;
+        if (details && details.hasOwnProperty('username')) {
+          this.usernameField.setError(err.details.username);
+        }
+
+        if (details && details.hasOwnProperty('email')) {
+          this.emailField.setError(err.details.email);
+        }
+      });
   }
 
   humanVerify(token: string) {

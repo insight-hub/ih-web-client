@@ -3,8 +3,8 @@ import { makeAutoObservable } from 'mobx';
 
 @injectable()
 export class Auth {
-  username: string = '';
-  email: string = '';
+  username: string = 'saymurrmeow';
+  email: string = 'capitanuragan1312@gmail.com';
   password: string = '';
 
   constructor() {

@@ -1,6 +1,7 @@
 import { inject, injectable } from 'inversify';
 import { makeAutoObservable } from 'mobx';
 import { Api } from 'src/api/api';
+import { ApiError } from 'src/api/error';
 import { TYPES } from 'src/iocTypes';
 import { ProxyField } from './proxyField';
 import { User } from './user';
@@ -48,12 +49,18 @@ export class LoginController {
     });
   }
 
-  onLogin(): Promise<User> {
+  onLogin() {
+    this.isHuman = false;
     return this.apiService
       .call('login', { username: this.username, password: this.password })
       .then((user) => {
         this.userModel.fromJson(user);
         return this.userModel;
+      })
+      .catch((e: ApiError) => {
+        if (e.hasOwnProperty('message')) {
+          this.passwordField.setError('Insorect username or password');
+        }
       });
   }
 }

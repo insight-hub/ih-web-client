@@ -9,7 +9,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { observer } from 'mobx-react-lite';
 import { useNavigate } from 'react-router-dom';
-import { User } from 'src/models';
 
 interface Props {
   form: LoginController;

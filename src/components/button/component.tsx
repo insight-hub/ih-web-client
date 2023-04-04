@@ -45,7 +45,7 @@ const ScButtonBase = styled(CoreInteractive) <ScProps>`
   outline: none;
   cursor: pointer;
   font-size: ${(props) =>
-    props.$size ? ButtonInternalFontSize[props.$size] : ButtonInternalFontSize.md};
+    props.$size ? ButtonInternalFontSize[props.$size] : ButtonInternalFontSize['md']};
   font-weight: ${(props) => props.$size === 'lg' && 'bold'};
 `;
 

@@ -43,6 +43,11 @@ export class OTPController {
         this.userModel.fromJson(user);
         return this.userModel;
       })
-      .catch((e) => console.log(e.detail));
+      .catch((e) => {
+        console.log(e);
+        if (e && e.details.hasOwnProperty('otp')) {
+          this.oneTimePasswordField.setError(e.details.otp);
+        }
+      });
   }
 }

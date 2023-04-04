@@ -35,7 +35,9 @@ export const CreateAccountForm: React.FC<Props> = observer(({ form, captchaKey }
   const handleCreateAccount = (e: SyntheticEvent) => {
     e.preventDefault();
     captchaRef.current?.reset();
-    form.onCreateAccount().then(() => navigate('otp'));
+    form.onCreateAccount().then((user) => {
+      if (user) navigate('otp');
+    });
   };
 
   const onCaptchaChange = () => {
